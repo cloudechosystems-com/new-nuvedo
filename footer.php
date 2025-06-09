@@ -258,67 +258,7 @@ $(document).ready(function() {
     });
   });
 </script>
-<script>
- jQuery(document).ready(function($) {
-    function loadSubcategories(catId) {
-        // Remove loading messages
-        $('#subcategory-container').empty();
-        $('#product-container').empty();
 
-        $.post(ajaxurl, {
-            action: 'load_subcategories_and_products',
-            cat_id: catId,
-        }, function(response) {
-            $('#subcategory-container').html(response.subcategories);
-            if (response.products) {
-                $('#product-container').html(response.products);
-            }
-        });
-    }
-
-    $('.category-block').on('click', function() {
-        var catId = $(this).data('cat-id');
-        loadSubcategories(catId);
-    });
-
-    $(document).on('click', '.subcategory-link', function(e) {
-        e.preventDefault();
-        var subcatId = $(this).data('subcat-id');
-        $('#product-container').empty(); // No loading message
-
-        $.post(ajaxurl, {
-            action: 'load_products',
-            cat_id: subcatId,
-        }, function(response) {
-            $('#product-container').html(response);
-        });
-    });
-
-    // Auto-load "Wellness Products"
-    <?php
-    $wellness = get_term_by('name', 'Wellness Products', 'product_cat');
-    if ($wellness) {
-        echo 'loadSubcategories(' . $wellness->term_id . ');';
-    }
-    ?>
-});
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const blocks = document.querySelectorAll(".category-block");
-
-  blocks.forEach(block => {
-    block.addEventListener("click", function () {
-      // Remove active from all
-      blocks.forEach(b => b.classList.remove("active"));
-
-      // Add active to clicked
-      this.classList.add("active");
-    });
-  });
-});
-</script>
 
 <!-- <script src="https://troopod-widget-build.b-cdn.net/test/feed.js" async></script> -->
 <div id="whatsapp-float">

@@ -1,28 +1,7 @@
 <?php get_header(); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"></script>
-<!-- ---Hero Section--- -->
-<!-- <div class="banner_bg">
-<section class="banner_section">
-	 <div class="banners owl-carousel owl-theme">
-        <?php if (have_rows('bann_images')) : ?>
-            <?php while (have_rows('bann_images')) : the_row(); ?>
-		<div class="item">
-			<div class="hero_image">
-				<img src="<?php echo esc_url(get_sub_field('images')); ?>" alt="Banner Image">
-			</div>
-			<div class="home_banner_details">
-				<h2><?= get_sub_field('banner_heading'); ?></h2>
-				<h3><?= get_sub_field('banner_sub_heading'); ?></h3>
-<div class="banner_btn_wrap"><a class="banner_btn scr_rvl_txt" href="<?= get_sub_field('banner_category_link'); ?>">Shop Now</a></div>
 
-			</div>
-		</div>
-            <?php endwhile; ?>
-        <?php endif; ?>
-    </div>
-</section>
-</div> -->
 <div class="banner_bg">
 	<div class="sharktank">
     <a href="https://youtu.be/VZIBSYwbtQA?si=p1NaVh8GgbP2SJTv" target="_blank">
@@ -51,44 +30,74 @@
     </section>
 </div>
 
-
-
-
 <section class="section icon_breif_section ">
-<!--   <div class="morph_svg">
-    <svg id="morph" viewBox="0 0 1920 260" preserveAspectRatio="none">
-      <path class="morph" d="M0,214c0,0,154.2,51.9,274,41c110-10,437-70,680-71c243-1,557,67,692,71s274-41,274-41v80H0V214z" />
-
-    </svg>
-
-  </div> -->
   
-  <div class="category-tabs">
-    <button class="category-tab active" data-category="bestsellers">Bestsellers</button>
-    <button class="category-tab" data-category="growing-kit">Growing Kit</button>
+<div class="category-tabs">
+  <?php
+  $categories = ['bestsellers' => 'Bestsellers', 'growing-kit' => 'Growing Kit'];
+  $selected = isset($_GET['cat']) ? $_GET['cat'] : 'bestsellers';
+
+  foreach ($categories as $slug => $label) {
+    $active = ($slug === $selected) ? 'active' : '';
+    echo '<a href="?cat=' . esc_attr($slug) . '" class="category-tab ' . $active . '">' . esc_html($label) . '</a>';
+  }
+  ?>
 </div>
+
+<div class="tab-product-container">
+  <div class="products-grid">
+  <div class="category-tabs">
+  <?php
+  $all_top_level_cats = get_terms([
+    'taxonomy' => 'product_cat',
+    'parent' => 0,
+    'hide_empty' => true,
+  ]);
+
+  $selected_slug = isset($_GET['cat']) ? sanitize_text_field($_GET['cat']) : ($all_top_level_cats[0]->slug ?? '');
+
+  foreach ($all_top_level_cats as $cat) {
+    $active = ($cat->slug === $selected_slug) ? 'active' : '';
+    echo '<a href="?cat=' . esc_attr($cat->slug) . '" class="category-tab ' . $active . '">' . esc_html($cat->name) . '</a>';
+  }
+  ?>
+</div>
+
+<div class="tab-product-container">
+  <div class="products-grid">
+    <?php
+    $selected_term = get_term_by('slug', $selected_slug, 'product_cat');
+    if ($selected_term):
+      $args = [
+        'post_type' => 'product',
+        'posts_per_page' => 8,
+        'tax_query' => [[
+          'taxonomy' => 'product_cat',
+          'field'    => 'slug',
+          'terms'    => $selected_term->slug,
+        ]],
+      ];
+      $loop = new WP_Query($args);
+      if ($loop->have_posts()):
+        woocommerce_product_loop_start();
+        while ($loop->have_posts()): $loop->the_post();
+          wc_get_template_part('content', 'newproduct'); 
+        endwhile;
+        woocommerce_product_loop_end();
+      else:
+        echo '<p>No products found in this category.</p>';
+      endif;
+      wp_reset_postdata();
+    else:
+      echo '<p>Invalid category.</p>';
+    endif;
+    ?>
+  </div>
+</div>
+
 
 <div id="product-carousel"></div>
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <div class="second_section_wrapper">
 	   <div class="second_section">
 		   <div class="imgwrapper"> 
@@ -124,12 +133,8 @@
         endif;
       ?>
     </div>
-
   </div>
-
 </section>
-
-
 
 <section class="homepage_product_section">
   <div class="container">
@@ -198,8 +203,6 @@
       </div>
     </div>
   </div>
-
-
 </section>
 <section class="section about_nuvedo" style="background-image: url('<?= get_field('about_nuvedo_background'); ?>')">
   <div class="container">
@@ -209,12 +212,8 @@
       <a class="primary_btn scr_rvl_txt" style="align-self:center;"
         href="<?= get_field('about_nuvedo_button_link'); ?>"><?= get_field('about_nuvedo_button_text'); ?></a>
     </div>
-
   </div>
-
 </section>
-
-
 <section class="section">
   <div class="container">
     <div class="community_wrapper">
@@ -278,11 +277,8 @@
           // no rows found
         endif;
       ?>
-        
     </div>
-
   </div>
-
 </section>
 <section class="section scr_rvl">
   <div class="container">
@@ -290,36 +286,25 @@
       <h2 class="section_heading"><?= get_field('community_heading'); ?></h2>
       <div class="community_img_wrapper">
         <?php echo do_shortcode('[instagram-feed showheader=false showfollow=false]'); ?>
-
-
       </div>
-
     </div>
-
   </div>
-
 </section>
-
-
 
 <section class="section our_story " style="background-image: url('https://nuvedo.com/wp-content/uploads/2023/10/our-story-bg.jpg')">
   <div class="container">
-
     <div class="our_story_content">
       <h2 class="scr_rvl"><?= get_field('story_nuvedo_heading'); ?></h2>
       <h3 class="scr_rvl"><?= get_field('story_nuvedo_subheading'); ?></h3>
       <p class="scr_rvl"> <?= get_field('story_nuvedo_content'); ?> </p>
       <a class="primary_btn scr_rvl_txt" href="<?= get_field('about_nuvedo_button_link'); ?>"><?= get_field('about_nuvedo_button_text'); ?></a>
     </div>
-
   </div>
-
 </section>
 
 <section class="section partners_logo_section">
   <div class="container">
     <h2 class="section_heading"> Brand Association</h2>
-
     <ul class="partners_logo_wrap">
       <?php
       $i=0;
@@ -333,14 +318,12 @@
 
           </span>
         </li>
-
         <?php $i++;
       endwhile;
       else :
         // no rows found
       endif;
       ?>
-
     </ul>
   </div>
 
@@ -369,8 +352,6 @@
   </div>
 
 </section> -->
-
-
 <section>
   <div class="cta_container">
     <div class="cta_wrapper" style="background-color:#254b51">
@@ -378,14 +359,11 @@
         <h3 class="cta_heading"><?= get_field('cta_heading'); ?></h3>
         <p class="cta_subheading"><?= get_field('cta_subheading'); ?></p>
         <?php echo do_shortcode('[contact-form-7 id="3132" title="CTA form"]'); ?>
-
       </div>
       <div class="cta_image">
         <img src="<?= get_field('cta_image'); ?>" alt="Subscribe">
       </div>
-
     </div>
-
   </div>
 </section>
 

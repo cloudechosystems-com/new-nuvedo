@@ -140,81 +140,6 @@ add_action( 'widgets_init', 'dravalife_widgets_init' );
  * Enqueue scripts and styles.
  */
  
- 
- 
-add_action('wp_ajax_load_subcategories_and_products', 'load_subcategories_and_products');
-add_action('wp_ajax_nopriv_load_subcategories_and_products', 'load_subcategories_and_products');
-
-function load_subcategories_and_products() {
-    $cat_id = intval($_POST['cat_id']);
-
-    $subcats = get_terms([
-        'taxonomy' => 'product_cat',
-        'parent' => $cat_id,
-        'hide_empty' => false,
-    ]);
-
-    $output = [
-        'subcategories' => '',
-        'products' => '',
-    ];
-
-    if (!empty($subcats)) {
-        $output['subcategories'] .= '<div class="subcategory-list">';
-        foreach ($subcats as $subcat) {
-           $output['subcategories'] .= '<label class="subcategory-link" data-subcat-id="' . esc_attr($subcat->term_id) . '">
-  <input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($subcat->term_id) . '">
-  <span class="subcategory-text">' . esc_html($subcat->name) . '</span>
-</label>';
-
-
-        }
-        $output['subcategories'] .= '</div>';
-
-        // Load first subcategory's products by default
-        $output['products'] = get_products_html($subcats[0]->term_id);
-    } else {
-        $output['products'] = get_products_html($cat_id);
-    }
-
-    wp_send_json($output);
-}
-
-add_action('wp_ajax_load_products', 'load_products');
-add_action('wp_ajax_nopriv_load_products', 'load_products');
-
-function load_products() {
-    $cat_id = intval($_POST['cat_id']);
-    echo get_products_html($cat_id);
-    wp_die();
-}
-
-function get_products_html($cat_id) {
-    $args = [
-        'post_type' => 'product',
-        'posts_per_page' => 12,
-        'tax_query' => [[
-            'taxonomy' => 'product_cat',
-            'field'    => 'term_id',
-            'terms'    => $cat_id,
-        ]]
-    ];
-    $query = new WP_Query($args);
-    ob_start();
-    if ($query->have_posts()) {
-        echo '<div class="products-grid">';
-        while ($query->have_posts()) {
-            $query->the_post();
-            wc_get_template_part('content', 'product');
-        }
-        echo '</div>';
-    } else {
-        echo '<p>No products found.</p>';
-    }
-    wp_reset_postdata();
-    return ob_get_clean();
-}
-
 
  
 function dravalife_scripts() {
@@ -224,6 +149,7 @@ function dravalife_scripts() {
   // 	wp_enqueue_style( 'owlCarousel', get_template_directory_uri() . '/assets/owl.carousel.min.css',false,'1.1','all');
 	// wp_enqueue_style( 'owlCarouseldefault', get_template_directory_uri() . '/assets/owl.theme.default.min.css',false,'1.1','all');
 	wp_enqueue_style( 'custom_style', get_template_directory_uri() . '/custom_style.css',false,'1.1','all');
+	// wp_enqueue_style( 'customstyle', get_template_directory_uri() . '/customstyle.css',false,'1.1','all');
 
 	wp_register_script( 'jQuery', 'https://code.jquery.com/jquery-3.3.1.min.js', null, null, false );
 	wp_enqueue_script('jQuery');
@@ -543,50 +469,6 @@ add_filter( 'woocommerce_product_add_to_cart_text', function( $text ) {
 	return $text;
 }, 10 );
 
-// function register_shipment_arrival_order_status() {
-
-//     register_post_status( 'wc-arrival-shipment', array(
-
-//         'label'                     => 'Replacement',
-
-//         'public'                    => true,
-
-//         'show_in_admin_status_list' => true,
-
-//         'show_in_admin_all_list'    => true,
-
-//         'exclude_from_search'       => false,
-
-//         'label_count'               => _n_noop( 'Replacement <span class="count">(%s)</span>', 'Replacement <span class="count">(%s)</span>' )
-
-//     ) );
-
-// }
-
-// add_action( 'init', 'register_shipment_arrival_order_status' );
-
-// function add_awaiting_shipment_to_order_statuses( $order_statuses ) {
-
-//     $new_order_statuses = array();
-
-//     foreach ( $order_statuses as $key => $status ) {
-
-//         $new_order_statuses[ $key ] = $status;
-
-//         if ( 'wc-processing' === $key ) {
-
-//             $new_order_statuses['wc-arrival-shipment'] = 'Replacement';
-
-//         }
-
-//     }
-
-//     return $new_order_statuses;
-
-// }
-
-// add_filter( 'wc_order_statuses', 'add_awaiting_shipment_to_order_statuses' );
-
 /**
  * Change number of products that are displayed per page (shop page)
  */
@@ -616,23 +498,6 @@ function update_cart_item_quantity() {
 add_action('wp_ajax_update_cart_item_quantity', 'update_cart_item_quantity');
 add_action('wp_ajax_nopriv_update_cart_item_quantity', 'update_cart_item_quantity');
 
-// add_action('woocommerce_calculate_totals', 'custom_calculate_totals', 10, 1);
-
-// function custom_calculate_totals($cart) {
-//     if (is_admin() && !defined('DOING_AJAX')) return;
-
-//     // Loop through cart items
-//     foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
-//         $product = $cart_item['data'];
-        
-//         // Check if product has a discount
-//         if ($product->get_sale_price()) {
-//             $cart_item['data']->set_price($cart_item['data']->get_sale_price()); // Set product price to sale price
-//         }
-//     }
-// }
-
-
 add_action('wp_enqueue_scripts', 'hide_shipping_for_guests');
 
 function hide_shipping_for_guests() {
@@ -660,6 +525,90 @@ function load_jquery_from_google_cdn() {
     }
 }
 
+// Handle initial subcategory + product load
+add_action('wp_ajax_load_subcategories_and_products', 'load_subcategories_and_products');
+add_action('wp_ajax_nopriv_load_subcategories_and_products', 'load_subcategories_and_products');
+
+function load_subcategories_and_products() {
+    $cat_id = intval($_POST['cat_id']);
+
+    $subcats = get_terms([
+        'taxonomy' => 'product_cat',
+        'parent' => $cat_id,
+        'hide_empty' => false,
+    ]);
+
+    $output = [
+        'subcategories' => '',
+        'products' => '',
+    ];
+
+    if (!empty($subcats)) {
+        $output['subcategories'] .= '<div class="subcategory-list">';
+        // "All" radio
+        $output['subcategories'] .= '<label><input type="radio" class="subcategory-radio" name="subcategory" value="' . esc_attr($cat_id) . '" checked> <span>All</span></label>';
+
+        foreach ($subcats as $subcat) {
+            $output['subcategories'] .= '<label><input type="radio" class="subcategory-radio" name="subcategory" value="' . esc_attr($subcat->term_id) . '"> <span>' . esc_html($subcat->name) . '</span></label>';
+        }
+        $output['subcategories'] .= '</div>';
+
+        // Load all products by default (category level, not subcat yet)
+        $output['products'] = get_products_html($cat_id);
+    } else {
+        // No subcategories — just load direct products
+        $output['products'] = get_products_html($cat_id);
+    }
+
+    wp_send_json($output);
+}
+
+// Handle subcategory product filtering
+add_action('wp_ajax_filter_products_by_subcat', 'filter_products_by_subcat');
+add_action('wp_ajax_nopriv_filter_products_by_subcat', 'filter_products_by_subcat');
+
+function filter_products_by_subcat() {
+    if (empty($_POST['subcat'])) {
+        wp_send_json_error('No subcategory selected.');
+        wp_die();
+    }
+
+    $subcat_id = intval($_POST['subcat']);
+    echo get_products_html($subcat_id);
+    wp_die();
+}
+
+// Reusable product loop (WooCommerce style)
+function get_products_html($cat_id) {
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => 12,
+        'tax_query'      => [[
+            'taxonomy' => 'product_cat',
+            'field'    => 'term_id',
+            'terms'    => $cat_id,
+        ]],
+        'post_status'    => 'publish',
+        'no_found_rows'  => true, // Performance
+    ];
+
+    $query = new WP_Query($args);
+    ob_start();
+
+    if ($query->have_posts()) {
+        echo '<div class="products-grid product_cat_card_wrapper">';
+        while ($query->have_posts()) {
+            $query->the_post();
+            wc_get_template_part('content', 'newproduct'); // Uses WooCommerce templates
+        }
+        echo '</div>';
+    } else {
+        echo '<p>No products found.</p>';
+    }
+
+    wp_reset_postdata();
+    return ob_get_clean();
+}
 
 
 

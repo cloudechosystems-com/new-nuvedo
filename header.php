@@ -259,17 +259,17 @@
 
 		</div>
 		<div class="top-bar" id="topBar">
-    <div class="contact-info">
-<div class="scrolling-container">
-    <script>
-        for (let i = 0; i < 4; i++) {
-            document.write('<a href="https://nuvedo.com/my-account/">');
-            document.write('<span>Get 10% Off On Your First Order! Create A Free Account and enter your Promo code MUSHWELCOME at checkout</span>');
-            document.write('<button class="buttoncta">Register Now!</button> &nbsp;&nbsp;&nbsp;');
-            document.write('</a>');
-        }
-    </script>
-</div>
+      <div class="contact-info">
+        <div class="scrolling-container">
+            <script>
+                for (let i = 0; i < 4; i++) {
+                    document.write('<a href="https://nuvedo.com/my-account/">');
+                    document.write('<span>Get 10% Off On Your First Order! Create A Free Account and enter your Promo code MUSHWELCOME at checkout</span>');
+                    document.write('<button class="buttoncta">Register Now!</button> &nbsp;&nbsp;&nbsp;');
+                    document.write('</a>');
+                }
+            </script>
+        </div>
     </div>
-</div>
+    </div>
 	</header>
