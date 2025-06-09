@@ -88,9 +88,19 @@ foreach ($reordered_cats as $cat) {
             'hide_empty' => false,
         ]);
 
-        foreach ($subcats as $subcat) {
-            echo '<label><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($subcat->term_id) . '"> ' . esc_html($subcat->name) . '</label>';
+        if (!empty($subcats)) {
+            echo '<div class="subcategory-list">';
+            
+            // Add the "All" option
+            echo '<label><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($default->term_id) . '" checked> <span>All</span></label>';
+        
+            foreach ($subcats as $subcat) {
+                echo '<label><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($subcat->term_id) . '"> <span>' . esc_html($subcat->name) . '</span></label>';
+            }
+        
+            echo '</div>';
         }
+        
     }
     ?>
 </div>
@@ -151,15 +161,16 @@ jQuery(document).ready(function($) {
     });
 
     $(document).on('change', '.subcategory-radio', function() {
-        const subcatId = $(this).val();
-        $('#product-container').fadeTo(100, 0.3);
-        $.post(ajaxurl, {
-            action: 'filter_products_by_subcat',
-            subcat: subcatId
-        }, function(response) {
-            $('#product-container').html(response).fadeTo(100, 1);
-        });
+    const subcatId = $(this).val();
+    $('#product-container').fadeTo(100, 0.3);
+    $.post(ajaxurl, {
+        action: 'filter_products_by_subcat',
+        subcat: subcatId
+    }, function(response) {
+        $('#product-container').html(response).fadeTo(100, 1);
     });
+});
+
 
 });
 </script>

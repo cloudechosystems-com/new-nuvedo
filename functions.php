@@ -610,6 +610,43 @@ function get_products_html($cat_id) {
     return ob_get_clean();
 }
 
+add_action('wp_ajax_load_tab_products', 'load_tab_products');
+add_action('wp_ajax_nopriv_load_tab_products', 'load_tab_products');
+
+function load_tab_products() {
+  $slug = sanitize_text_field($_POST['cat_slug'] ?? '');
+  $term = get_term_by('slug', $slug, 'product_cat');
+
+  if (!$term) {
+    echo '<p>Invalid category.</p>';
+    wp_die();
+  }
+
+  $args = [
+    'post_type' => 'product',
+    'posts_per_page' => 8,
+    'tax_query' => [[
+      'taxonomy' => 'product_cat',
+      'field' => 'slug',
+      'terms' => $term->slug,
+    ]],
+  ];
+  $loop = new WP_Query($args);
+
+  if ($loop->have_posts()) {
+    woocommerce_product_loop_start();
+    while ($loop->have_posts()) {
+      $loop->the_post();
+      wc_get_template_part('content', 'newproduct'); // or 'content', 'product'
+    }
+    woocommerce_product_loop_end();
+  } else {
+    echo '<p>No products found in this category.</p>';
+  }
+
+  wp_reset_postdata();
+  wp_die();
+}
 
 
 

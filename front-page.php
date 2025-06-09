@@ -31,22 +31,7 @@
 </div>
 
 <section class="section icon_breif_section ">
-  
 <div class="category-tabs">
-  <?php
-  $categories = ['bestsellers' => 'Bestsellers', 'growing-kit' => 'Growing Kit'];
-  $selected = isset($_GET['cat']) ? $_GET['cat'] : 'bestsellers';
-
-  foreach ($categories as $slug => $label) {
-    $active = ($slug === $selected) ? 'active' : '';
-    echo '<a href="?cat=' . esc_attr($slug) . '" class="category-tab ' . $active . '">' . esc_html($label) . '</a>';
-  }
-  ?>
-</div>
-
-<div class="tab-product-container">
-  <div class="products-grid">
-  <div class="category-tabs">
   <?php
   $all_top_level_cats = get_terms([
     'taxonomy' => 'product_cat',
@@ -54,47 +39,17 @@
     'hide_empty' => true,
   ]);
 
-  $selected_slug = isset($_GET['cat']) ? sanitize_text_field($_GET['cat']) : ($all_top_level_cats[0]->slug ?? '');
-
   foreach ($all_top_level_cats as $cat) {
-    $active = ($cat->slug === $selected_slug) ? 'active' : '';
-    echo '<a href="?cat=' . esc_attr($cat->slug) . '" class="category-tab ' . $active . '">' . esc_html($cat->name) . '</a>';
+    echo '<button class="category-tab" data-cat-slug="' . esc_attr($cat->slug) . '">' . esc_html($cat->name) . '</button>';
   }
   ?>
 </div>
 
 <div class="tab-product-container">
-  <div class="products-grid">
-    <?php
-    $selected_term = get_term_by('slug', $selected_slug, 'product_cat');
-    if ($selected_term):
-      $args = [
-        'post_type' => 'product',
-        'posts_per_page' => 8,
-        'tax_query' => [[
-          'taxonomy' => 'product_cat',
-          'field'    => 'slug',
-          'terms'    => $selected_term->slug,
-        ]],
-      ];
-      $loop = new WP_Query($args);
-      if ($loop->have_posts()):
-        woocommerce_product_loop_start();
-        while ($loop->have_posts()): $loop->the_post();
-          wc_get_template_part('content', 'newproduct'); 
-        endwhile;
-        woocommerce_product_loop_end();
-      else:
-        echo '<p>No products found in this category.</p>';
-      endif;
-      wp_reset_postdata();
-    else:
-      echo '<p>Invalid category.</p>';
-    endif;
-    ?>
+  <div class="products-grid" id="tab-product-grid">
+    <p>Loading products...</p> <!-- default loading message -->
   </div>
 </div>
-
 
 <div id="product-carousel"></div>
 
@@ -387,6 +342,36 @@
     loop: true,
   });
 </script>
+<script>
+jQuery(document).ready(function($) {
+  function loadTabProducts(slug) {
+    $('#tab-product-grid').html('<p>Loading products...</p>');
+
+    $.post(ajaxurl, {
+      action: 'load_tab_products',
+      cat_slug: slug
+    }, function(response) {
+      $('#tab-product-grid').html(response);
+    });
+  }
+
+  // Initial load for first category
+  const firstTab = $('.category-tab').first();
+  if (firstTab.length) {
+    firstTab.addClass('active');
+    loadTabProducts(firstTab.data('cat-slug'));
+  }
+
+  // On tab click
+  $('.category-tab').on('click', function() {
+    $('.category-tab').removeClass('active');
+    $(this).addClass('active');
+    const slug = $(this).data('cat-slug');
+    loadTabProducts(slug);
+  });
+});
+</script>
+
 
 
 <?php get_footer(); ?>
