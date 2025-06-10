@@ -92,10 +92,10 @@ foreach ($reordered_cats as $cat) {
             echo '<div class="subcategory-list">';
             
             // Add the "All" option
-            echo '<label><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($default->term_id) . '" checked> <span>All</span></label>';
+            echo '<label class="subcategory-link"><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($default->term_id) . '" checked> <span>All</span></label>';
         
             foreach ($subcats as $subcat) {
-                echo '<label><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($subcat->term_id) . '"> <span>' . esc_html($subcat->name) . '</span></label>';
+                echo '<label class="subcategory-link "><input type="radio" name="subcategory" class="subcategory-radio" value="' . esc_attr($subcat->term_id) . '"> <span>' . esc_html($subcat->name) . '</span></label>';
             }
         
             echo '</div>';

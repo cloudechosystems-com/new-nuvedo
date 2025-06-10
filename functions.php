@@ -546,10 +546,10 @@ function load_subcategories_and_products() {
     if (!empty($subcats)) {
         $output['subcategories'] .= '<div class="subcategory-list">';
         // "All" radio
-        $output['subcategories'] .= '<label><input type="radio" class="subcategory-radio" name="subcategory" value="' . esc_attr($cat_id) . '" checked> <span>All</span></label>';
+        $output['subcategories'] .= '<label class="subcategory-link"><input type="radio" class="subcategory-radio" name="subcategory" value="' . esc_attr($cat_id) . '" checked> <span>All</span></label>';
 
         foreach ($subcats as $subcat) {
-            $output['subcategories'] .= '<label><input type="radio" class="subcategory-radio" name="subcategory" value="' . esc_attr($subcat->term_id) . '"> <span>' . esc_html($subcat->name) . '</span></label>';
+            $output['subcategories'] .= '<label class="subcategory-link"><input type="radio" class="subcategory-radio" name="subcategory" value="' . esc_attr($subcat->term_id) . '"> <span>' . esc_html($subcat->name) . '</span></label>';
         }
         $output['subcategories'] .= '</div>';
 
