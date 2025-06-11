@@ -65,7 +65,7 @@ Template Name: Wellness Widget Page Template
                     <a style="width:50%;" href="<?php echo get_permalink( ) ?>">
                         <div class="product_card_image_wrapper">
                             <div class="product_image">
-                                <img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" />
+                                <img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" class="product-img"/>
 
                             </div>
                             

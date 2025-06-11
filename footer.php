@@ -187,6 +187,32 @@ $('.gallery_slider').owlCarousel({
         }
     });
 </script>
+<script>
+    $(".nf_wrapper").owlCarousel({
+        items: 4,
+        loop: true,
+        nav: true,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+        responsive: {
+            1200: {
+                items: 4 
+            },
+            992: {
+                items: 3 
+            },
+            768: {
+                items: 2
+            },
+            0: {
+                items: 1 
+            }
+        }
+    });
+</script>
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
 $(document).ready(function() {

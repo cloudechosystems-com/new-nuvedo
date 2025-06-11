@@ -148,7 +148,7 @@ function dravalife_scripts() {
 
   // 	wp_enqueue_style( 'owlCarousel', get_template_directory_uri() . '/assets/owl.carousel.min.css',false,'1.1','all');
 	// wp_enqueue_style( 'owlCarouseldefault', get_template_directory_uri() . '/assets/owl.theme.default.min.css',false,'1.1','all');
-	wp_enqueue_style( 'custom_style', get_template_directory_uri() . '/custom_style.css',false,'1.1','all');
+	wp_enqueue_style( 'custom_style', get_template_directory_uri() . '/custom_style.css',false,'1.3','all');
 	// wp_enqueue_style( 'customstyle', get_template_directory_uri() . '/customstyle.css',false,'1.1','all');
 
 	wp_register_script( 'jQuery', 'https://code.jquery.com/jquery-3.3.1.min.js', null, null, false );
