@@ -648,6 +648,59 @@ function load_tab_products() {
   wp_die();
 }
 
+add_action('woocommerce_single_product_summary', 'custom_product_rating_box', 9);
+function custom_product_rating_box() {
+    global $product;
+
+    if ( ! wc_review_ratings_enabled() ) return;
+
+    $average = $product->get_average_rating();
+    $review_count = $product->get_review_count();
+
+    if ( $average > 0 ) {
+        echo '<div class="custom-star-rating">';
+        echo '<span class="star">★</span>';
+        echo '<span class="rating-number">' . number_format( $average, 1 ) . '</span>';
+        echo '<span class="review-count">' . $review_count . ' reviews</span>';
+        echo '</div>';
+    }
+}
+add_filter( 'woocommerce_add_to_cart_redirect', 'redirect_to_checkout_for_buy_now' );
+
+function redirect_to_checkout_for_buy_now( $url ) {
+    if ( isset( $_REQUEST['buy_now'] ) ) {
+        return wc_get_checkout_url();
+    }
+    return $url;
+}
+// Add this to your theme's functions.php file
+add_action( 'woocommerce_after_single_product_summary', 'ak_custom_suggestions', 20 );
+
+function ak_custom_suggestions() {
+	global $product;
+	if ( ! $product ) return;
+
+	$product_id = $product->get_id();
+
+	$related_products = wc_get_products( array(
+		'limit'    => 4,
+		'status'   => 'publish',
+		'category' => $product->get_category_ids(),
+		'exclude'  => array( $product_id )
+	) );
+
+	if ( ! empty( $related_products ) ) {
+		echo '<h3 class="section-title">Suggested Products</h3>';
+		echo '<ul class="products columns-4">';
+		foreach ( $related_products as $prod ) {
+			setup_postdata( $GLOBALS['post'] = get_post( $prod->get_id() ) );
+			wc_get_template_part( 'content', 'newproduct' );
+		}
+		wp_reset_postdata();
+		echo '</ul>';
+	}
+}
+
 
 
 

@@ -31,6 +31,7 @@
 </div>
 
 <section class="section icon_breif_section ">
+<div class="container">
 <div class="category-tabs">
   <?php
   $all_top_level_cats = get_terms([
@@ -46,13 +47,15 @@
 </div>
 
 <div class="tab-product-container">
-  <div class="products-grid" id="tab-product-grid">
+  <div class="best-products" id="tab-product-grid">
     <p>Loading products...</p> <!-- default loading message -->
   </div>
 </div>
 
-<div id="product-carousel"></div>
-
+<div id="product-carousel" class="best-product-carousel owl-carousel owl-theme"></div>
+</div>
+</section>
+<section class="section nuvedo_numuste">
   <div class="second_section_wrapper">
 	   <div class="second_section">
 		   <div class="imgwrapper"> 
@@ -171,10 +174,25 @@
 </section> -->
 <section>
 
-<section class="">
+<section class="section">
   <div class="container">
     <h2 class="section_heading new-section-heading">New Arrivals</h2>
-<?php echo do_shortcode('[products limit="8" columns="4" orderby="date" order="DESC"]');?>
+<?php $args = array(
+    'post_type' => 'product',
+    'posts_per_page' => 8,
+    'orderby' => 'date',
+    'order' => 'DESC'
+);
+$loop = new WP_Query($args);
+if ($loop->have_posts()) {
+    echo '<ul class="products columns-4">';
+    while ($loop->have_posts()) : $loop->the_post();
+        wc_get_template_part('content', 'newproduct');
+    endwhile;
+    echo '</ul>';
+}
+wp_reset_postdata();
+?>
 </div>
 </section>
 <section class="section partners_logo_section">
@@ -202,6 +220,49 @@
     </ul>
   </div>
     </section>
+<section class="section">
+  <div class="container">
+     <h2 class="section_heading new-section-heading">Blog & Articles</h2>
+    <div class="home-blog_post_container">
+      <?php
+       $loop = new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish','posts_per_page' => -1) );
+       if ( $loop->have_posts() ) :?>
+       <?php
+           while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                <div class="new-home_blog_post">
+                  <div class="blog_image_wrapper">
+                    <img src="<?= get_the_post_thumbnail_url(); ?>" alt="">
+                  </div>
+                  <div class="home_blog_content_wrapper">
+                    <a href="<?= get_the_permalink(); ?>">
+                      <h1><?= the_title(); ?></h1>
+<!--                       <span><?php echo get_the_date( 'Y/m/d' ); ?></span> -->
+                    </a>
+                    <p><?= wp_trim_words(get_the_content(),40); ?></p>
+					  <div style="display: flex; flex-direction: column;">
+						<span class="blog-date"><?php echo get_the_date( 'Y/m/d' ); ?></span>
+                    <a class="secondary_button" href="<?= get_the_permalink(); ?>">read more</a>
+					  </div>
+
+                  </div>
+
+                </div>
+           <?php endwhile;
+       endif;
+       wp_reset_postdata();
+    ?>
+
+
+
+    </div>
+   <a class="primary_btn scr_rvl_txt" href="https://lightgrey-crab-521485.hostingersite.com/blog/">Show All</a>
+  </div>
+
+
+
+</section>
+
+
   <section class="section scr_rvl">
   <div class="container">
     <div class="community_wrapper_home">
@@ -212,6 +273,7 @@
     </div>
   </div>
 </section>
+
 <section>
   <div class="cta_container">
     <div class="cta_wrapper" style="background-color:#254b51">

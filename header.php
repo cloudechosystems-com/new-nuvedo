@@ -55,25 +55,25 @@
 			<nav class="custom-menu">
   <div class="menu-section">
       <div class="menu-title-wrapper">
-    <h3 class="menu-title">Shop</h3>
+    <h3 class="menu-title"><a href="">Shop</a></h3>
      <span class="toggle-icon">+</span>
      </div>
     <div class="menu-grid">
      <a href="https://lightgrey-crab-521485.hostingersite.com/product-category/wellness-products/"> <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/f29d4ea60b3b6c05541b33a9a14c2d80f38feada-1.png" alt="Wellness Products" class="product-menu-item-img">
-        <p>Wellness Products</p>
+        <p><a href="">Wellness Products</a></p>
       </div>
       </a>
       <a href="https://lightgrey-crab-521485.hostingersite.com/product-category/grow-mushrooms/">
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/b545e19d3e201ab4e6cbc6282fd61335b2973443-1.png" alt="Grow Mushrooms" class="product-menu-item-img">
-        <p>Grow Mushrooms</p>
+        <p><a href="">Grow Mushrooms</a></p>
       </div>
       </a>
        <a href="https://lightgrey-crab-521485.hostingersite.com/product-category/dry-mushrooms/">
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/16427353b5b7513c9b04ed30fb192543d4782ffc-1.png" alt="Dry Mushroom" class="product-menu-item-img">
-        <p>Dry Mushroom</p>
+        <p><a href="">Dry Mushroom</a></p>
       </div>
     </a>
     
@@ -89,30 +89,30 @@
 </div>
   <div class="menu-section">
       <div class="menu-title-wrapper">
-            <h3 class="menu-title">Learn</h3>
+            <h3 class="menu-title"><a href="">Learn</a></h3>
      <span class="toggle-icon">+</span>
       </div>
   
     <div class="menu-grid">
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Layer_x0020_1-1-1.png" alt="Blogs" class="product-menu-item-img">
-        <p>Blogs & Articles</p>
+        <p><a href="">Blogs & Articles</a></p>
       </div>
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/17659849061684884127-1.png" alt="Know Your Mushrooms" class="product-menu-item-img">
-        <p>Know Your Mushrooms</p>
+        <p><a href="">Know Your Mushrooms</a></p>
       </div>
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/15557438101670565711-2-1.png" alt="Medicinal Mushrooms" class="product-menu-item-img">
-        <p>Medicinal Mushrooms</p>
+        <p><a href="">Medicinal Mushrooms</a></p>
       </div>
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/18008637391692620767-1.png" alt="Workshop" class="product-menu-item-img">
-        <p>Cultivation Workshop</p>
+        <p><a href="">Cultivation Workshop</a></p>
       </div>
       <div class="product-menu-item">
         <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/10203195841644841186-1.png" alt="FAQ" class="product-menu-item-img">
-        <div class="small-title">Frequently Asked Questions</div>
+        <div class="small-title"><a href="">Frequently Asked Questions</a></div>
         <p>FAQ</p>
       </div>
     </div>
@@ -126,13 +126,13 @@
   </div>
   <div class="menu-section">
       <div class="menu-wrapper">
-    <h3 class="menu-title">Nuvedo Circle Community</h3>
+    <h3 class="menu-title"><a href="">Nuvedo Circle Community</a></h3>
     <div class="menu-redirection"><a href="#"><img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/6421887411543238876-1-5.png" class="redirect-img"></a></div>
     </div>
   </div>
   <div class="menu-section">
       <div class="menu-wrapper">
-    <h3 class="menu-title">Contact</h3>
+    <h3 class="menu-title"><a href="">Contact</a></h3>
     <div class="menu-redirection"><a href="#"><img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/6421887411543238876-1-5.png" class="redirect-img"></a></div>
     </div>
   </div>
