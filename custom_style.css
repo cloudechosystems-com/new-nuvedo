@@ -1122,6 +1122,13 @@ img.emblem_center {
   cursor: pointer;
   border-radius: 7px;
 }
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover {
+  background: #c75328 !important;
+  color: #fff !important;
+}
 /* Cta Styles */
 .cta_wrapper {
   display: flex;
