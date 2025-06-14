@@ -84,12 +84,7 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
 	do_action('woocommerce_after_single_variation');
 	?>
 </div>
-<div class="single-buy-now-button">
-	<a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="singlepage-buynow">
-		Buy Now - <?php echo wc_price($product->get_price()); ?>
-	</a>
 
-</div>
 </div>
 
 <?php

@@ -48,7 +48,42 @@
 
 <div class="tab-product-container">
   <div class="best-products" id="tab-product-grid">
-    <p>Loading products...</p> <!-- default loading message -->
+  <?php
+      // Get all top-level categories
+      $all_top_level_cats = get_terms([
+        'taxonomy' => 'product_cat',
+        'parent' => 0,
+        'hide_empty' => true,
+      ]);
+
+      // Load products from the first category
+      if (!empty($all_top_level_cats)) {
+        $first_cat = $all_top_level_cats[0];
+        $args = [
+          'post_type' => 'product',
+          'posts_per_page' => 5,
+          'tax_query' => [[
+            'taxonomy' => 'product_cat',
+            'field' => 'slug',
+            'terms' => $first_cat->slug,
+          ]],
+        ];
+        $loop = new WP_Query($args);
+
+        if ($loop->have_posts()) {
+          echo '<ul class="products columns-4">'; // Ensure columns-4 is added here
+          while ($loop->have_posts()) : $loop->the_post();
+            wc_get_template_part('content', 'newproduct'); // Use your product card template
+          endwhile;
+          echo '</ul>';
+        } else {
+          echo '<p>No products found in this category.</p>';
+        }
+        wp_reset_postdata();
+      } else {
+        echo '<p>No categories found.</p>';
+      }
+      ?>
   </div>
 </div>
 
@@ -310,35 +345,23 @@ wp_reset_postdata();
   });
 </script>
 <script>
-jQuery(document).ready(function($) {
-  function loadTabProducts(slug) {
-    $('#tab-product-grid').html('<p>Loading products...</p>');
+  jQuery(document).ready(function($) {
+    function loadTabProducts(slug) {
+      $('#tab-product-grid').fadeTo(100, 0.3);
+      $.post(ajaxurl, {
+        action: 'load_tab_products',
+        cat_slug: slug
+      }, function(response) {
+        $('#tab-product-grid').html(response).fadeTo(100, 1);
+      });
+    }
 
-    $.post(ajaxurl, {
-      action: 'load_tab_products',
-      cat_slug: slug
-    }, function(response) {
-      $('#tab-product-grid').html(response);
+    $('.category-tab').on('click', function() {
+      $('.category-tab').removeClass('active');
+      $(this).addClass('active');
+      const slug = $(this).data('cat-slug');
+      loadTabProducts(slug);
     });
-  }
-
-  // Initial load for first category
-  const firstTab = $('.category-tab').first();
-  if (firstTab.length) {
-    firstTab.addClass('active');
-    loadTabProducts(firstTab.data('cat-slug'));
-  }
-
-  // On tab click
-  $('.category-tab').on('click', function() {
-    $('.category-tab').removeClass('active');
-    $(this).addClass('active');
-    const slug = $(this).data('cat-slug');
-    loadTabProducts(slug);
   });
-});
 </script>
-
-
-
 <?php get_footer(); ?>

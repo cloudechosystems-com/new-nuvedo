@@ -79,6 +79,12 @@
       }
       echo '</div>';
       ?>
+      <div class="single-buy-now-button">
+	<a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="singlepage-buynow">
+		Buy Now - <?php echo wc_price($product->get_price()); ?>
+	</a>
+
+</div>
      <?php
       global $product;
       $target_product_ids = array(5285, 4989);

@@ -1127,7 +1127,19 @@ img.emblem_center {
   display: flex;
   flex-wrap: wrap;
 }
-
+button.wpcsb-btn.button.alt:hover {
+    background-color: #c75328;
+    color: #fff; 
+}
+button.wpcsb-btn.button.alt {
+    background-color: #c75328;
+    color: #fff;
+    border-radius: 22px;
+    opacity: 1 !important;
+}
+.wpcsb-product-name {
+    font-size: 12px;
+}
 .cta_content {
   flex: 1;
   display: flex;
@@ -1478,6 +1490,10 @@ table.variations tr {
 }
 .products li {
   text-align: center;
+}
+ .product-menu-item p {
+    font-size: 14px;
+    line-height: 1.1;
 }
 .related .products {
   display: flex;
@@ -2128,6 +2144,7 @@ span.review-count {
   font-size: 18px;
   border-radius: 50px;
   margin-top: 20px;
+  float: left;
 }
 /* Remove default radio look */
 .custom-subscription-button input[type="radio"] {
@@ -3579,7 +3596,7 @@ span.woocommerce-Price-amount.amount {
   color: #fff !important;
   background: #c75328 !important;
   border-color: #c75328 !important;
-  font-size: 18px !important;
+  font-size: 22px !important;
   font-weight: bold;
   width: 30px !important;
   height: 30px !important;
@@ -4780,7 +4797,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
     flex: 0 0 80%;
   }
   button.single_add_to_cart_button.button.alt {
-    padding: 3px 12px;
+    padding: 10px;
   }
   .desktop-menu {
     display: none;
@@ -4863,6 +4880,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
     display: flex;
     margin-top: 35%;
     overflow: scroll;
+    overflow-y: hidden;
     flex-wrap: nowrap;
     gap: 3px;
     justify-content: flex-start;
@@ -4915,9 +4933,11 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
   .subcategory-list {
     justify-content: flex-start;
   }
+ 
   .subcategory-list {
     overflow-x: auto;
     scrollbar-width: thin;
+    overflow-y: hidden;
   }
   .custom-price-wrap .woocommerce-Price-amount bdi {
     font-size: 18px;
