@@ -310,35 +310,30 @@ wp_reset_postdata();
   });
 </script>
 <script>
-jQuery(document).ready(function($) {
-  function loadTabProducts(slug) {
-    $('#tab-product-grid').html('<p>Loading products...</p>');
+  jQuery(document).ready(function($) {
+    function loadTabProducts(slug) {
+      $('#tab-product-grid').html('<p>Loading products...</p>');
 
-    $.post(ajaxurl, {
-      action: 'load_tab_products',
-      cat_slug: slug
-    }, function(response) {
-      $('#tab-product-grid').html(response);
+      $.post(ajaxurl, {
+        action: 'load_tab_products',
+        cat_slug: slug
+      }, function(response) {
+        $('#tab-product-grid').html(response);
+      });
+    }
+
+    const firstTab = $('.category-tab').first();
+    if (firstTab.length) {
+      firstTab.addClass('active');
+      loadTabProducts(firstTab.data('cat-slug'));
+    }
+
+    $('.category-tab').on('click', function() {
+      $('.category-tab').removeClass('active');
+      $(this).addClass('active');
+      const slug = $(this).data('cat-slug');
+      loadTabProducts(slug);
     });
-  }
-
-  // Initial load for first category
-  const firstTab = $('.category-tab').first();
-  if (firstTab.length) {
-    firstTab.addClass('active');
-    loadTabProducts(firstTab.data('cat-slug'));
-  }
-
-  // On tab click
-  $('.category-tab').on('click', function() {
-    $('.category-tab').removeClass('active');
-    $(this).addClass('active');
-    const slug = $(this).data('cat-slug');
-    loadTabProducts(slug);
   });
-});
 </script>
-
-
-
 <?php get_footer(); ?>

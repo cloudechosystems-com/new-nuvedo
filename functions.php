@@ -621,15 +621,18 @@ function load_tab_products() {
     echo '<p>Invalid category.</p>';
     wp_die();
   }
-
+  $child_ids = get_term_children($term->term_id, 'product_cat');
+  $all_ids = array_merge([$term->term_id], $child_ids);
   $args = [
     'post_type' => 'product',
     'posts_per_page' => 8,
     'tax_query' => [[
       'taxonomy' => 'product_cat',
-      'field' => 'slug',
-      'terms' => $term->slug,
-    ]],
+      'field' => 'term_id',
+      'terms' => $all_ids,
+      'include_children' => true,
+      'operator' => 'IN'
+    ]]
   ];
   $loop = new WP_Query($args);
 
@@ -700,7 +703,14 @@ function ak_custom_suggestions() {
 		echo '</ul>';
 	}
 }
-
+function pass_ajaxurl_to_frontend() {
+    ?>
+    <script type="text/javascript">
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+    </script>
+    <?php
+}
+add_action('wp_head', 'pass_ajaxurl_to_frontend');
 
 
 
