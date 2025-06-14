@@ -270,7 +270,7 @@ header {
 .page-id-189 .header_warapper.white_color .header_cta a,
 .single-learn_post .header_warapper.white_color .header_cta a,
 .page-id-7189 .header_warapper.white_color .header_cta a {
-  color: #fff;
+  color: inherit;
 }
 .home
   .header_warapper.white_color
@@ -352,7 +352,7 @@ header {
   width: 30px;
 }
 .header_warapper.white_color .hamburger div {
-  background: #ffffff;
+  background: #000;
 }
 
 .error404 .header_warapper.white_color svg {
@@ -457,7 +457,6 @@ header {
   border: none;
 }
 .header_cta a {
-  color: #000;
   font-size: 18px;
   font-weight: 600;
   transition: all 0.8s;
@@ -612,7 +611,13 @@ svg#close_icon {
   font-size: 24px;
   font-weight: 700;
   margin-right: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.down-arrow-icon {
+  width: 25px;
 }
 .menu-title-wrapper {
   display: flex;
@@ -2146,7 +2151,7 @@ span.review-count {
 }
 
 .custom-subscription-button input[type="radio"]:checked + .option-title:before {
-  content: '';
+  content: "";
 }
 
 /* Selected outline color */
@@ -2156,7 +2161,9 @@ span.review-count {
   outline: none;
 }
 
-.custom-subscription-button input[type="radio"]:checked ~ .custom-subscription-button {
+.custom-subscription-button
+  input[type="radio"]:checked
+  ~ .custom-subscription-button {
   border-color: #e1671e;
   background-color: #fef0e7;
 }
@@ -2166,7 +2173,7 @@ span.review-count {
 }
 
 .single-buy-now-button span.woocommerce-Price-amount.amount bdi {
-    font-size: 18px;
+  font-size: 18px;
 }
 section.section.reviews_and_question {
   display: none;
@@ -3874,30 +3881,30 @@ a.checkout-button.button.alt.wc-forward {
   align-items: center;
 }
 button.single_add_to_cart_button.button.alt {
-      color: #fff;
-    background: #c75328;
-    border-radius: 40px;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    text-transform: capitalize;
-    font-weight: 500;
-    padding: 15px 43px;
-    margin-top: 5px;
-    transition: all ease-in-out 1s;
-    border: 2px solid #c75328;
+  color: #fff;
+  background: #c75328;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding: 15px 43px;
+  margin-top: 5px;
+  transition: all ease-in-out 1s;
+  border: 2px solid #c75328;
 }
 img.btn-icon-left {
-    width: 12px;
-    margin-right: 3px;
+  width: 12px;
+  margin-right: 3px;
 }
 #scrollimg form .added_to_cart {
   margin-top: 0;
 }
-img.btn-icon-right{
-    width: 6px;
-    align-items: center;
-    margin-left: 5px;
+img.btn-icon-right {
+  width: 6px;
+  align-items: center;
+  margin-left: 5px;
 }
 .awdr-you-saved-text.cart_totals .woocommerce-Price-amount.amount bdi {
   color: #35b424;
@@ -4772,9 +4779,9 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
   .new-home_blog_post {
     flex: 0 0 80%;
   }
-button.single_add_to_cart_button.button.alt { 
-  padding: 3px 12px;
-}
+  button.single_add_to_cart_button.button.alt {
+    padding: 3px 12px;
+  }
   .desktop-menu {
     display: none;
   }
@@ -5505,4 +5512,39 @@ button.single_add_to_cart_button.button.alt {
 }
 ul#shipping_method {
   display: none;
+}
+@media (min-width: 768px) {
+  /* Position parent for absolute submenu */
+  .menu-section {
+    position: relative;
+  }
+
+  /* Title styling (e.g., "Shop", "Learn") */
+  .menu-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  /* Submenu hidden by default */
+  .menu-header-grid{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    z-index: 999;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 360px;
+    border-radius: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Show submenu on hover */
+  .menu-section:hover .menu-grid {
+    display: flex;
+  }
 }
