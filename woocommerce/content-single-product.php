@@ -1,4 +1,4 @@
- <?php
+<?php
   /**
    * The template for displaying product content in the single-product.php template
    *
@@ -18,7 +18,18 @@
   defined('ABSPATH') || exit;
 
   global $product;
-
+  add_action('woocommerce_after_single_variation', function() {
+      global $product;
+      if ( $product && $product->is_type('variable') ) {
+          ?>
+          <div class="single-buy-now-button">
+              <a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="singlepage-buynow">
+                  Buy Now - <?php echo wc_price($product->get_price()); ?>
+              </a>
+          </div>
+          <?php
+      }
+  });
   /**
    * Hook: woocommerce_before_single_product.
    *
@@ -79,12 +90,7 @@
       }
       echo '</div>';
       ?>
-      <div class="single-buy-now-button">
-	<a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="singlepage-buynow">
-		Buy Now - <?php echo wc_price($product->get_price()); ?>
-	</a>
-
-</div>
+      
      <?php
       global $product;
       $target_product_ids = array(5285, 4989);
@@ -336,3 +342,4 @@
          });
        });
      </script>
+     

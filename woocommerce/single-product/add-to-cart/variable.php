@@ -45,7 +45,7 @@ do_action('woocommerce_before_add_to_cart_form'); ?>
 					$regular_price = wc_price($variation_obj->get_regular_price()); // This gives ₹2000.23
 				?>
 					<label class="custom-subscription-button">
-						<input type="radio" name="variation_id" class="price-radio" <?php echo esc_attr($variation_id); ?>" required />
+						<input type="radio" name="variation_id" class="price-radio" value=<?php echo esc_attr($variation_id); ?> required />
 						<div class="option-wrapper">
 						<div class="option-title"><?php echo esc_html(ucwords($variation_name)); ?></div>
 						<div class="option-price"><?php echo $regular_price; ?> / Each</div>
