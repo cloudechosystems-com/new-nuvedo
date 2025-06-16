@@ -24,7 +24,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
       method="post" enctype="multipart/form-data"
       data-product_id="<?php echo absint( $product->get_id() ); ?>"
       data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
-    <?php do_action( 'woocommerce_before_variations_form' ); ?>
+	  <div class="form-wrapper">
+	  <div class="subscription-title">Subscribe & Save</div>
+	  <?php do_action( 'woocommerce_before_variations_form' ); ?>
 
     <?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
         <p class="stock out-of-stock">
@@ -60,7 +62,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
         </table>
 
         <?php do_action( 'woocommerce_after_variations_table' ); ?>
-
+		</div>
         <div class="single_variation_wrap">
             <?php
                 /**
@@ -86,6 +88,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
     <?php endif; ?>
 
     <?php do_action( 'woocommerce_after_variations_form' ); ?>
+	
 </form>
 
 <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
