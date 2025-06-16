@@ -18,18 +18,16 @@
   defined('ABSPATH') || exit;
 
   global $product;
-  add_action('woocommerce_after_single_variation', function() {
-      global $product;
-      if ( $product && $product->is_type('variable') ) {
-          ?>
-          <div class="single-buy-now-button">
-              <a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="singlepage-buynow">
-                  Buy Now - <?php echo wc_price($product->get_price()); ?>
-              </a>
-          </div>
-          <?php
-      }
-  });
+  add_action('woocommerce_after_add_to_cart_button', function() {
+       global $product;
+    if ($product) {
+        ?>
+        <a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="single-buy-now-button singlepage-buynow">
+            Buy Now - <?php echo wc_price($product->get_price()); ?>
+        </a>
+        <?php
+    }
+});
   /**
    * Hook: woocommerce_before_single_product.
    *
