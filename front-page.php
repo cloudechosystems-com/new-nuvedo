@@ -148,6 +148,76 @@
     </div>
   </div>
 </section>
+<section class="homepage_product_section">
+  <div class="container">
+    <div class="home_product_wrapper">
+      <div class="home_product_row1 home_product_row">
+        <div class="section_heading_wrapper home_product_row_left scr_rvl">
+          <h2 class="section_heading">Let us help you in your mushroom journey.</h2>
+        </div>
+        <div class="home_product_item home_product_row_right scr_rvl" style="background:<?= get_field('background_color_1'); ?>">
+          <div class="home_product_item_img">
+            <img class="" src="<?= get_field('product_image_01'); ?>" alt="">
+          </div>
+          <div class="home_product_item_content">
+            <div class="home_product_item_name">
+              <?= get_field('product_name_01'); ?>
+            </div>
+            <p class="home_product_item_discription">
+              <?= get_field('product_description_01'); ?>
+            </p>
+            <a class="secondary_button scr_rvl_txt" href="<?php echo get_field('product_link'); ?>">Shop now</a>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="home_product_row2 home_product_row">
+        <div class="home_product_item home_product_row_left scr_rvl" style="background:<?= get_field('background_color_2'); ?>">
+          <div class="home_product_item_img">
+            <img class="" src="<?= get_field('product_image_2'); ?>" alt="">
+          </div>
+          <div class="home_product_item_content">
+            <div class="home_product_item_name">
+              <?= get_field('product_name_2'); ?>
+            </div>
+            <p class="home_product_item_discription">
+              <?= get_field('product_description_2'); ?>
+            </p>
+            <a class="secondary_button scr_rvl_txt" href="<?php echo get_field('product_link_2'); ?>">Shop now</a>
+
+          </div>
+        </div>
+        <div class="home_product_item home_product_row_right scr_rvl" style="background:<?= get_field('background_color_3'); ?>">
+          <div class="home_product_item_img">
+            <img class="" src="<?= get_field('product_image_3'); ?>" alt="">
+          </div>
+          <div class="home_product_item_content">
+            <div class="home_product_item_name">
+              <?= get_field('product_name_3'); ?>
+            </div>
+            <p class="home_product_item_discription">
+              <?= get_field('product_description_3'); ?>
+            </p>
+            <a class="secondary_button scr_rvl_txt" href="<?php echo get_field('product_link_3'); ?>">Shop now</a>
+
+          </div>
+        </div>
+		 
+
+      </div>
+      <div class="featured">
+        <div class="emblem_navedo">
+          <img class="emblem_center" src="https://nuvedo.com/wp-content/uploads/2021/03/emblem_center_r.png"
+            alt="">
+          <img class="emblem_ring" src="https://nuvedo.com/wp-content/uploads/2021/03/emblem_ring_r.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
 <section class="section our_story " style="background-image: url('https://nuvedo.com/wp-content/uploads/2023/10/our-story-bg.jpg')">
   <div class="container">
     <div class="our_story_content">

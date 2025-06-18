@@ -47,7 +47,7 @@
 		</div> -->
 
 
-      <div class="header_warapper white_color" id="main-contents">
+      <div class="header_warapper" id="main-contents">
         <div class="menu_wrapper">
           <div class="hamburger">
             <div class="bar_1"></div>
@@ -240,6 +240,11 @@
             </div>
           </nav>
         </div>
+        <div class="minicart_header">
+          <?php echo do_shortcode('[jma_woo_minicart]'); ?>
+        </div>
+
+
         <div class="header_search">
           <div class="search_click">
 
