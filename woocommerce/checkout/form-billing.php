@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 <div class="woocommerce-billing-fields">
-	<h3>SHIPPING & BILLING</h3>
+	<h3>Shipping & Billing Address</h3>
 
 	<div class="woocommerce-billing-fields__field-wrapper">
 		<?php

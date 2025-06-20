@@ -76,6 +76,24 @@
 </footer><!-- #colophon -->
 </div><!-- #page -->
 <?php wp_footer(); ?>
+<div class="footer-bar">
+  <a href="https://lightgrey-crab-521485.hostingersite.com/my-account/" class="footer-item">
+  <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/14163220701548233621-1.png" class="footer-icon" alt="Home Icon"/>
+    <span>Account</span>
+  </a>
+  <a href="https://lightgrey-crab-521485.hostingersite.com/cart/" class="footer-item">
+   <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Cart-Icon.png" class="footer-icon" alt="Cart Icon"/>
+    <span>Cart</span>
+  </a>
+  <a href="#" class="footer-item">
+    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/18366974841582708977-1.png" class="footer-icon" alt="Home Icon"/>
+    <span>Offers</span>
+  </a>
+  <a href="https://wa.me/+917306746936" class="footer-item">
+    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/14329293221556105345-1.png" class="footer-icon" alt="Help Icon"/>
+    <span>Help/Contact</span>
+  </a>
+</div>
 
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="<?php echo get_template_directory_uri() ?>/js/owl.carousel.min.js"></script>

@@ -18,7 +18,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-do_action( 'woocommerce_before_checkout_form', $checkout );
 
 // If checkout registration is disabled and not logged in, the user cannot checkout.
 if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
@@ -28,12 +27,37 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 <section class="">
+<div class="woocommerce-form-login-toggle">
+    <?php
+    wc_print_notice(
+        apply_filters(
+            'woocommerce_checkout_login_message',
+            '<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Vector.png" class="checkout_login_icon" alt="login icon" />'
+            . esc_html__( 'Returning customer?', 'woocommerce' )
+            . ' <a href="#" class="showlogin">'
+            . esc_html__( 'Click here to login', 'woocommerce' ) . '</a>'
+        ),
+        'notice'
+    );
+    ?>
+</div>
+<?php
+
+woocommerce_login_form(
+	array(
+		'message'  => esc_html__( 'If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing section.', 'woocommerce' ),
+		'redirect' => wc_get_checkout_url(),
+		'hidden'   => true,
+	)
+);
+?>
+
 	<div class="cart_page_container">
 
 		<form class="checkout_page_coupon" method="post">
 
 
-				<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" id="coupon_code" value="" />
+				<input type="text" name="coupon_code" class="input-text" placeholder="<?php esc_attr_e( 'Coupon', 'woocommerce' ); ?>" id="coupon_code" value="" />
 
 				<button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply coupon', 'woocommerce' ); ?></button>
 
@@ -79,6 +103,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 			<!-- <h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3> -->
 			<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 			<?php do_action( 'woocommerce_checkout_after_order_review' );?>
+			
 			
 		</form>
 <!-- 		<div class="cart_page_zero_waste">

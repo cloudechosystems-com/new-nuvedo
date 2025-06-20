@@ -2272,6 +2272,11 @@ span.review-count {
   margin-top: 20px;
   float: left;
 }
+img.checkout_login_icon {
+    max-width: 20px !important;
+    max-height: 20px !important;
+    margin-right: 6px;
+}
 .custom-subscription-button input[type="radio"] {
   display: flex;
 }
@@ -3336,7 +3341,8 @@ tr.tax-rate.tax-rate-gst-1 {
   font-size: 25px;
 }
 .tax-rate .woocommerce-Price-amount.amount {
-  font-size: 28px;
+  font-size: 18px;
+  color: #626262;
 }
 .cart_page_zero_waste {
   display: flex;
@@ -3733,10 +3739,24 @@ h2.your_cart {
   padding-top: 5px;
   gap: 12px;
 }
+tr.cart-subtotal th {
+  color: #c75528 !important;
+  font-size: 18px !important;
+}
+td.product-name {
+  color: #626262;
+  padding: 10px 5px !important;
+}
+.cart-subtotal span.woocommerce-Price-amount.amount bdi {
+  color: #c75528;
+  font-size: 18px !important;
+}
 .woocommerce table.shop_table th {
   line-height: 2em !important;
+  color: #626262;
+  font-size: 22px;
+  padding: 10px 5px;
 }
-
 .shop_table_responsive .cart-discount {
   display: flex;
   flex-wrap: wrap;
@@ -3956,19 +3976,87 @@ label.shipping_method_cartlabel {
 }
 .woocommerce-billing-fields h3 {
   font-size: 20px;
-  color: #555;
+  color: #c75528;
+  font-weight: 400;
   padding-bottom: 13px;
+  position: relative;
 }
-
 form.checkout_page_coupon {
   display: flex;
   margin: 10px 0;
 }
-
+.form-row.form-row-wide.mailchimp-newsletter {
+  display: none;
+}
 .entry-content {
   margin-top: 130px;
 }
-
+.woocommerce-shipping-fields {
+  display: none;
+}
+.woocommerce form .form-row-first,
+.woocommerce form .form-row-last,
+.woocommerce-page form .form-row-first,
+.woocommerce-page form .form-row-last {
+  width: 100%;
+}
+.woocommerce form .form-row label {
+  line-height: 2;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+.woocommerce-billing-fields__field-wrapper input {
+  border-radius: 8px !important;
+  border: 1px solid #c75528 !important;
+  padding: 12px !important;
+  background: #ffffff;
+}
+.woocommerce form .form-row .input-text,
+.woocommerce form .form-row select {
+  color: #818ea1;
+  font-size: 16px;
+}
+tr.order-total th {
+  color: #c75528 !important;
+  font-size: 24px !important;
+}
+span.woocommerce-input-wrapper strong {
+  border: 1px solid #c75528;
+  padding: 10px;
+  width: 100% !important;
+  border-radius: 8px;
+  display: block;
+}
+.woocommerce form .form-row .optional {
+  visibility: hidden;
+}
+td.product-total bdi {
+  font-size: 18px !important;
+  color: #626262 !important;
+}
+tr.order-total bdi {
+  font-size: 24px !important;
+  color: #c75528 !important;
+}
+.shipping span.woocommerce-Price-amount.amount bdi,
+.custom-subtotal-shipping bdi,
+.tax-rate.tax-rate-gst-5-1 bdi {
+  font-size: 18px !important;
+  color: #626262 !important;
+}
+tr.shipping th,
+tr.custom-subtotal-shipping th,
+.tax-rate.tax-rate-gst-5-1 th {
+  font-size: 18px !important;
+  color: #626262 !important;
+  font-weight: 400 !important;
+}
+.woocommerce-additional-fields {
+  display: none;
+}
+.woocommerce-billing-fields {
+  padding-top: 10px;
+}
 form.checkout_page_coupon input {
   flex: 6;
   border-radius: inherit;
@@ -3994,19 +4082,19 @@ form.checkout_page_coupon button {
   font-size: 19px !important;
   color: #c75328 !important;
 }
-
-form.checkout_page_coupon button:hover {
+form.checkout_page_coupon button {
   flex: 2;
-  background: #c75328 !important;
-  border: 2px solid #c75328 !important;
+  background: #c75528 !important;
+  border: 1px solid #c75528 !important;
   border-left: none !important;
-  text-transform: uppercase;
-  font-size: 19px !important;
+  text-transform: capitalize;
+  font-size: 16px !important;
   color: #fff !important;
-  border-top-right-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  min-width: max-content;
+  padding: 8px 8px !important;
 }
-
 .woocommerce-additional-fields label {
   display: none !important;
 }
@@ -4280,8 +4368,8 @@ button.woocommerce-Button.woocommerce-button.button.woocommerce-form-register__s
   padding: 4px;
   background: #fff;
 }
- .page {
-    margin: 0;
+.page {
+  margin: 0;
 }
 
 .bottom_seperator_or:after {
@@ -4421,8 +4509,12 @@ th.woocommerce-orders-table__header span {
   border-radius: 10px;
   background: #f1f1f1;
   padding: 10px;
+  margin-top: 20px;
 }
-
+.woocommerce-info::before {
+  color: #1e85be;
+  display: none;
+}
 .woocommerce table.my_account_orders td,
 .woocommerce table.my_account_orders th {
   padding: 12px 8px;
@@ -4471,6 +4563,25 @@ form.woocommerce-EditAccountForm.edit-account input {
 .woocommerce-MyAccount-content fieldset {
   border: 0;
   padding: 0;
+}
+a.showlogin {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e23710;
+  padding: 0 5px;
+}
+.woocommerce-error,
+.woocommerce-info,
+.woocommerce-message {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  position: unset;
+  background: none;
+  border: none;
 }
 
 form.woocommerce-EditAccountForm.edit-account button.woocommerce-Button.button {
@@ -4524,6 +4635,9 @@ input.button.smsalert_login_with_otp.sa-otp-btn-init {
   text-transform: uppercase;
   color: #ffffff;
 }
+.footer-bar {
+  display: none;
+}
 
 .bottom_seperator_or {
   position: relative;
@@ -4571,7 +4685,9 @@ strong.woocommerce-review__author {
 span.woocommerce-review__dash {
   display: none;
 }
-
+.woocommerce-billing-fields__field-wrapper {
+  margin-top: 16px;
+}
 time.woocommerce-review__published-date {
   font-size: 14px;
   font-weight: 600;
@@ -5015,12 +5131,29 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
   .cart-similar-products h3 {
     font-size: 24px;
   }
+  a.showlogin {
+    font-size: 14px;
+  }
+  .woocommerce-error,
+  .woocommerce-info,
+  .woocommerce-message {
+    font-size: 14px;
+  }
   a.checkout-button.button.alt.wc-forward {
     font-size: 16px !important;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10 !important;
     padding: 8px;
+  }
+  .woocommerce-billing-fields h3::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: -15px;
+    width: 100vw;
+    height: 0.5px;
+    background-color: #363636;
   }
   h2.your_cart::after {
     left: -15px;
@@ -5030,11 +5163,45 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
     width: 120px;
     margin-top: 8px;
   }
+  .footer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #b45020; /* Similar brown shade */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 999;
+  }
+
+  a.footer-item {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+  }
+
   .coupon button {
     font-size: 12px !important;
   }
+  img.checkout_login_icon {
+    max-width: 16px !important;
+    max-height: 16px !important;
+}
   .similar-products {
     padding: 0;
+  }
+  .floating-button {
+    display: none;
+  }
+  .footer-icon {
+    max-width: 25px !important;
+  }
+  div#whatsapp-float {
+    display: none;
   }
   .payment-section {
     box-shadow: 0px -2px 34px 4px #00000040;
