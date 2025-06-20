@@ -284,6 +284,38 @@ $(document).ready(function() {
     });
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stickySection = document.querySelector(".payment-section");
+    const stopElement = document.querySelector("footer"); // change this selector if needed
+
+    if (window.innerWidth <= 768 && stickySection && stopElement) {
+      const placeholder = document.createElement("div");
+      stickySection.parentNode.insertBefore(placeholder, stickySection);
+      placeholder.style.height = stickySection.offsetHeight + "px";
+
+      function handleSticky() {
+        const stickyRect = stickySection.getBoundingClientRect();
+        const stopRect = stopElement.getBoundingClientRect();
+
+        if (stickyRect.bottom >= stopRect.top) {
+          stickySection.style.position = "absolute";
+          stickySection.style.top = "auto";
+          stickySection.style.bottom = (document.body.offsetHeight - stopElement.offsetTop) + "px";
+        } else {
+          stickySection.style.position = "sticky";
+          stickySection.style.top = "0px";
+          stickySection.style.bottom = "";
+        }
+      }
+
+      window.addEventListener("scroll", handleSticky);
+      window.addEventListener("resize", handleSticky);
+      handleSticky(); // initial run
+    }
+  });
+</script>
+
 
 
 <!-- <script src="https://troopod-widget-build.b-cdn.net/test/feed.js" async></script> -->
