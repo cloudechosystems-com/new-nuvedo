@@ -56,7 +56,7 @@ $discount = ($regular && $sale) ? round((($regular - $sale) / $regular) * 100) :
 
 			echo '<div class="variable-price-range">';
 			echo sprintf(
-				'<span class="price product-price">%s %s - %s %s</span>',
+				'<span class="price product-price">%s%s - %s%s</span>',
 				$currency_symbol,
 				number_format( $min_price, 2 ),
 				$currency_symbol,
@@ -67,13 +67,13 @@ $discount = ($regular && $sale) ? round((($regular - $sale) / $regular) * 100) :
 		<?php else : ?>
 			<?php if ( $product->get_regular_price() ) : ?>
 				<span class="price product-price <?= ( $product->get_sale_price() ) ? 'strike' : ''; ?>">
-					&#x20B9; <?php echo number_format( $regular, 2 ); ?>
+					&#x20B9;<?php echo number_format( $regular, 2 ); ?>
 				</span>
 			<?php endif; ?>
 
 			<?php if ( $product->get_sale_price() ) : ?>
 				<span class="price old-price">
-					&#x20B9; <?php echo number_format( $sale, 2 ); ?>
+					&#x20B9;<?php echo number_format( $sale, 2 ); ?>
 				</span>
 			<?php endif; ?>
 		<?php endif; ?>

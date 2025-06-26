@@ -75,8 +75,8 @@
                 </a>
                 <a href="https://lightgrey-crab-521485.hostingersite.com/product-category/dry-mushrooms/">
                   <div class="product-menu-item">
-                    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/16427353b5b7513c9b04ed30fb192543d4782ffc-1.png" alt="Dry Mushroom" class="product-menu-item-img">
-                    <p>Dry Mushroom</p>
+                    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/16427353b5b7513c9b04ed30fb192543d4782ffc-1.png" alt="Dry Mushrooms" class="product-menu-item-img">
+                    <p>Dry Mushrooms</p>
                   </div>
                 </a>
 
@@ -169,8 +169,8 @@
                 </a>
                 <a href="https://lightgrey-crab-521485.hostingersite.com/product-category/dry-mushrooms/">
                   <div class="product-menu-item">
-                    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/16427353b5b7513c9b04ed30fb192543d4782ffc-1.png" alt="Dry Mushroom" class="product-menu-item-img">
-                    <p>Dry Mushroom</p>
+                    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/16427353b5b7513c9b04ed30fb192543d4782ffc-1.png" alt="Dry Mushrooms" class="product-menu-item-img">
+                    <p>Dry Mushrooms</p>
                   </div>
                 </a>
 

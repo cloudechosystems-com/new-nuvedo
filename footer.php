@@ -206,7 +206,7 @@ $('.gallery_slider').owlCarousel({
     });
 </script>
 <script>
-    $(".nf_wrapper").owlCarousel({
+    $(".nf_wrapper,.partners_logo_wrap").owlCarousel({
         items: 4,
         loop: true,
         nav: true,
@@ -226,7 +226,7 @@ $('.gallery_slider').owlCarousel({
                 items: 2
             },
             0: {
-                items: 1 
+                items: 2
             }
         }
     });
@@ -291,6 +291,20 @@ $(document).ready(function() {
 
 </script>
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const isMobile = window.innerWidth <= 768;
+
+  // Only open by default on mobile
+  if (isMobile) {
+    document.querySelectorAll('.menu-grid').forEach(grid => {
+      grid.classList.add('active');
+    });
+    document.querySelectorAll('.toggle-icon').forEach(icon => {
+      icon.textContent = '–';
+    });
+  }
+
+  // Click toggle works on all devices
   document.querySelectorAll('.menu-title-wrapper').forEach(wrapper => {
     wrapper.addEventListener('click', () => {
       const section = wrapper.closest('.menu-section');
@@ -301,35 +315,72 @@ $(document).ready(function() {
       icon.textContent = grid.classList.contains('active') ? '–' : '+';
     });
   });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const stickySection = document.querySelector(".payment-section");
+  const stopElement = document.querySelector("footer");
+  const footerBar = document.querySelector(".footer-bar");
+
+  if (window.innerWidth <= 768 && stickySection && stopElement && footerBar) {
+    // Add a placeholder to avoid layout shift
+    const placeholder = document.createElement("div");
+    function updatePlaceholderHeight() {
+      placeholder.style.height = `${stickySection.offsetHeight}px`;
+    }
+    updatePlaceholderHeight();
+    stickySection.parentNode.insertBefore(placeholder, stickySection);
+
+    // Initial sticky position
+    stickySection.style.position = "sticky";
+    stickySection.style.top = "0px";
+    stickySection.style.zIndex = "1001";
+
+    let isStuck = false;
+
+    function handleSticky() {
+  const stickyRect = stickySection.getBoundingClientRect();
+  const footerBarHeight = footerBar.offsetHeight;
+  const windowHeight = window.innerHeight;
+  const stickyBottom = Math.ceil(stickyRect.bottom);
+  const footerBarTop = Math.floor(windowHeight - footerBarHeight);
+  const buffer = 10; // Increase buffer to reduce flicker
+
+  if (stickyBottom >= footerBarTop - buffer) {
+    if (!isStuck) {
+      stickySection.style.position = "absolute";
+      stickySection.style.top = "auto";
+      stickySection.style.bottom = `${footerBarHeight}px`;
+      isStuck = true;
+    }
+  } else {
+    if (isStuck) {
+      stickySection.style.position = "sticky";
+      stickySection.style.top = "0px";
+      stickySection.style.bottom = "";
+      isStuck = false;
+    }
+  }
+}
+
+    window.addEventListener("scroll", handleSticky, { passive: true });
+    window.addEventListener("resize", () => {
+      updatePlaceholderHeight();
+      handleSticky();
+    });
+    handleSticky();
+  }
+});
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const stickySection = document.querySelector(".payment-section");
-    const stopElement = document.querySelector("footer"); // change this selector if needed
-
-    if (window.innerWidth <= 768 && stickySection && stopElement) {
-      const placeholder = document.createElement("div");
-      stickySection.parentNode.insertBefore(placeholder, stickySection);
-      placeholder.style.height = stickySection.offsetHeight + "px";
-
-      function handleSticky() {
-        const stickyRect = stickySection.getBoundingClientRect();
-        const stopRect = stopElement.getBoundingClientRect();
-
-        if (stickyRect.bottom >= stopRect.top) {
-          stickySection.style.position = "absolute";
-          stickySection.style.top = "auto";
-          stickySection.style.bottom = (document.body.offsetHeight - stopElement.offsetTop) + "px";
-        } else {
-          stickySection.style.position = "sticky";
-          stickySection.style.top = "0px";
-          stickySection.style.bottom = "";
-        }
-      }
-
-      window.addEventListener("scroll", handleSticky);
-      window.addEventListener("resize", handleSticky);
-      handleSticky(); // initial run
+  // When the page loads
+  window.addEventListener('DOMContentLoaded', function() {
+    // Select the first tab
+    const firstTab = document.querySelector('.category-tab');
+    if (firstTab) {
+      firstTab.classList.add('active');
     }
   });
 </script>

@@ -36,30 +36,57 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 3
 
 ?>
 <section class="section product_category_flex categorypage-main-wrapper">
-	<section class="weatherapp categorypage" style="max-width:300px; margin:0 auto;">
-		<div class="weatherapp-wrapper">
-			<img src="https://nuvedo.com/wp-content/uploads/2022/08/weather-e1648668406832.png" alt="">
-			<div class="weather-content">
-				<h3>Not sure which Mushroom Growing Kit to grow?</h3>
-				<a href="https://nuvedo.com/weather/" class="weatherapplink">CLICK</a>
-
-			</div>
-		</div>
-	</section>
-	<section class="weatherapp categorypage" style="max-width:300px; margin:0 auto;">
-		<div class="wellness-wrapper">
-			<img src="https://nuvedo.com/wp-content/uploads/2024/01/7d11ccde-f63f-46d8-b942-a163db0f8f73-e1705058017432.png" alt="">
-			<div class="weather-content">
-				<h3>Find your perfect Mushroom Extract</h3>
-				<a href="https://nuvedo.com/wellness-widget/" class="weatherapplink">CLICK</a>
-
-			</div>
-		</div>
-	</section>
+	
 	<div class="container">
 		
 
 		<?php
+// Get current category name
+$current_cat = get_queried_object();
+$current_cat_name = isset($current_cat->name) ? $current_cat->name : '';
+
+// Get homepage banners from front page
+$front_page_id = get_option('page_on_front');
+$matched_banner = null;
+
+if (have_rows('bann_images', $front_page_id)) {
+    while (have_rows('bann_images', $front_page_id)) {
+        the_row();
+        $banner_heading = get_sub_field('banner_heading');
+        if (strcasecmp($banner_heading, $current_cat_name) === 0) {
+            $matched_banner = [
+                'img' => get_sub_field('images'),
+                'heading' => $banner_heading,
+            ];
+            break;
+        }
+    }
+}
+
+// Fallback if no match found
+if (!$matched_banner) {
+    if (have_rows('bann_images', $front_page_id)) {
+        the_row();
+        $matched_banner = [
+            'img' => get_sub_field('images'),
+            'heading' => get_sub_field('banner_heading'),
+        ];
+    }
+}
+?>
+<section class="about_banner">
+    <div class="banner_content banner_overlay_wrap">
+        <?php if ($matched_banner): ?>
+            <img src="<?php echo esc_url($matched_banner['img']); ?>" alt="Nuvedo Product" class="banner_bg_img" style="width:100%;height:auto;display:block;">
+            <div class="banner_overlay_title">
+                <h1><?php echo esc_html($matched_banner['heading']); ?></h1>
+            </div>
+        <?php endif; ?>
+        <img fetchpriority="high" class="banner_img_spiral" src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2021/05/bannerspiral.png" alt="Nuvedo spiral background">
+    </div>
+</section>
+
+<?php
 		if (woocommerce_product_loop()) {
 
 

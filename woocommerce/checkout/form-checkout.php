@@ -104,13 +104,13 @@ woocommerce_login_form(
 			<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 			<?php do_action( 'woocommerce_checkout_after_order_review' );?>
 			
-			
+			<?php wc_get_template( 'checkout/terms.php' ); ?>
 		</form>
 <!-- 		<div class="cart_page_zero_waste">
 			<img src="https://nuvedo.com/wp-content/uploads/2022/05/Captured2.png" alt="">
 		</div> -->
 	</div>
-
+	
 </section>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>

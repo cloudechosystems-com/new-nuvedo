@@ -149,7 +149,7 @@
   </div>
 </section>
 <section class="homepage_product_section">
-  <div class="container">
+  <div class="product-category-container">
     <div class="home_product_wrapper">
       <div class="home_product_row1 home_product_row">
         <div class="section_heading_wrapper home_product_row_left scr_rvl">
@@ -302,8 +302,8 @@ wp_reset_postdata();
 </section>
 <section class="section partners_logo_section">
   <div class="container">
-  
-    <ul class="partners_logo_wrap">
+  <h2 class="section_heading new-section-heading">Brand Association</h2>
+    <ul class="partners_logo_wrap owl-carousel owl-theme">
       <?php
       $i=0;
       if( have_rows('partners') ):
