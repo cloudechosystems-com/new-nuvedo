@@ -30,7 +30,7 @@ do_action( 'woocommerce_before_main_content' );
 <section class="hero_section">
           <div class="hero_content_wrapper">
             <img src="<?= get_field('banner_image'); ?>" alt="">
-            <a class="primary_btn scr_rvl" href="<?= get_field('banner_button_link'); ?>"><?= get_field('banner_button_text'); ?></a>
+            <a class="primary_btn" href="<?= get_field('banner_button_link'); ?>"><?= get_field('banner_button_text'); ?></a>
           </div>
 </section>
 <section class="section">
@@ -39,7 +39,7 @@ do_action( 'woocommerce_before_main_content' );
       <?php
         if( have_rows('drava_features') ):
           while ( have_rows('drava_features') ) : the_row(); ?>
-          <div class="icon_breif scr_rvl">
+          <div class="icon_breif">
             <img src="<?= get_sub_field('icon'); ?>" alt="">
             <div class="icon_breif_content">
               <span><?= get_sub_field('first_text'); ?></span>

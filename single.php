@@ -25,7 +25,7 @@ get_header();
 
 			<section>
 				<div class="container-narrow">
-				 <div class="blog_content scr_rvl">
+				 <div class="blog_content">
 						 <div class="editable_text_container">
 								<p><?= the_content(); ?></p>
 						 </div>

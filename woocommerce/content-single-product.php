@@ -267,6 +267,7 @@
 
 
      <?php do_action('woocommerce_after_single_product'); ?>
+     
      <script>
        jQuery(document).ready(function($) {
          // Find the main product image and thumbnail images

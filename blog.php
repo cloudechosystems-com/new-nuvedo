@@ -23,7 +23,7 @@ Template Name: Blog Page Template
        if ( $loop->have_posts() ) :?>
        <?php
            while ( $loop->have_posts() ) : $loop->the_post(); ?>
-                <div class="blog_post scr_rvl">
+                <div class="blog_post">
                   <div class="blog_image_wrapper">
                     <img src="<?= get_the_post_thumbnail_url(); ?>" alt="">
                   </div>

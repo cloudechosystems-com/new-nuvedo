@@ -135,11 +135,6 @@ $(window).on("scroll", function() {
 });
 
 
-
-ScrollReveal().reveal('.scr_rvl', {
-  delay: 500
-});
-
 $(document).ready(function() {
   $(".step_box").hover(function() {
     var elmId = $(this).attr("id");

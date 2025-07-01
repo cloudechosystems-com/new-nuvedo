@@ -173,6 +173,20 @@ if (!$matched_banner) {
 
 	</div>
 </section>
+<section class="payment-section">
+    <div class="cart-container">
+        <div class="payment-secure">
+            <div class="payment-secure-text">
+                <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/lock.png" alt="Lock Icon" class="lock-icon">
+                <span>100% secure payment by</span>
+            </div>
+            <div class="payment-logos">
+                <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Frame-75.png" alt="Razorpay" class="payment-logo">
+            </div>
+        </div>
+    </div>
+
+</section>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		document.querySelectorAll('.subcategory-radio').forEach(function(radio) {

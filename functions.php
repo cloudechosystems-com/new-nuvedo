@@ -247,6 +247,34 @@ add_action( 'after_setup_theme', 'drava_add_woocommerce_support' );
 add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
+function force_flexslider_with_dots() {
+    if ( is_product() ) {
+        ?>
+        <script>
+        jQuery(document).ready(function($) {
+            $(window).on('load', function () {
+                const gallery = $('.woocommerce-product-gallery');
+
+                if (typeof $.fn.flexslider !== 'undefined' && gallery.length) {
+                    // Destroy any existing instance
+                    gallery.flexslider('destroy');
+
+                    // Reinitialize with dots
+                    gallery.flexslider({
+                        animation: 'slide',
+                        controlNav: true,     // ✅ Show dots
+                        directionNav: true,   // Keep arrows if needed
+                        animationLoop: true,
+                        slideshow: false
+                    });
+                }
+            });
+        });
+        </script>
+        <?php
+    }
+}
+add_action( 'wp_footer', 'force_flexslider_with_dots', 999 ); // ✅ Use higher priority
 
 
 //shortcode for mini-cart
@@ -711,6 +739,32 @@ function pass_ajaxurl_to_frontend() {
     <?php
 }
 add_action('wp_head', 'pass_ajaxurl_to_frontend');
+add_theme_support('wc-product-gallery-zoom');
+add_theme_support('wc-product-gallery-lightbox');
+add_theme_support('wc-product-gallery-slider');
 
+function enable_wc_gallery_supports() {
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+}
+add_action('after_setup_theme', 'enable_wc_gallery_supports');
+function enqueue_wc_gallery_scripts_if_missing() {
+    if (is_product()) {
+        wp_enqueue_script('flexslider'); // Required by wc-single-product.js
+        wp_enqueue_script('photoswipe'); // Optional
+        wp_enqueue_script('wc-single-product'); // Core script to initialize gallery
 
+        wp_enqueue_style('photoswipe'); // Optional, safe to include
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_wc_gallery_scripts_if_missing', 20);
 
+function enqueue_mobile_swiper_assets() {
+    if (is_product()) {
+        wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+        wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], null, true);
+        wp_enqueue_script('mobile-product-slider', get_template_directory_uri() . '/mobile-product-slider.js', ['swiper-js'], null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_mobile_swiper_assets');

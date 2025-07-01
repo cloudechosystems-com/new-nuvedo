@@ -35,7 +35,7 @@ do_action( 'woocommerce_before_main_content' );
       <?php
         if( have_rows('drava_features') ):
           while ( have_rows('drava_features') ) : the_row(); ?>
-          <div class="icon_breif scr_rvl">
+          <div class="icon_breif">
             <img src="<?= get_sub_field('icon'); ?>" alt="">
             <div class="icon_breif_content">
               <span><?= get_sub_field('first_text'); ?></span>

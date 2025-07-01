@@ -319,60 +319,29 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const stickySection = document.querySelector(".payment-section");
-  const stopElement = document.querySelector("footer");
-  const footerBar = document.querySelector(".footer-bar");
+  document.addEventListener("DOMContentLoaded", function () {
+    const sticky = document.querySelector(".payment-section");
+    const stop = document.querySelector("footer");
 
-  if (window.innerWidth <= 768 && stickySection && stopElement && footerBar) {
-    // Add a placeholder to avoid layout shift
-    const placeholder = document.createElement("div");
-    function updatePlaceholderHeight() {
-      placeholder.style.height = `${stickySection.offsetHeight}px`;
+    if (window.innerWidth <= 768 && sticky && stop) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          if (entries[0].isIntersecting) {
+            sticky.classList.add("stop-sticky");
+          } else {
+            sticky.classList.remove("stop-sticky");
+          }
+        },
+        {
+          root: null,
+          threshold: 0,
+          rootMargin: `0px 0px -${sticky.offsetHeight}px 0px`
+        }
+      );
+
+      observer.observe(stop);
     }
-    updatePlaceholderHeight();
-    stickySection.parentNode.insertBefore(placeholder, stickySection);
-
-    // Initial sticky position
-    stickySection.style.position = "sticky";
-    stickySection.style.top = "0px";
-    stickySection.style.zIndex = "1001";
-
-    let isStuck = false;
-
-    function handleSticky() {
-  const stickyRect = stickySection.getBoundingClientRect();
-  const footerBarHeight = footerBar.offsetHeight;
-  const windowHeight = window.innerHeight;
-  const stickyBottom = Math.ceil(stickyRect.bottom);
-  const footerBarTop = Math.floor(windowHeight - footerBarHeight);
-  const buffer = 10; // Increase buffer to reduce flicker
-
-  if (stickyBottom >= footerBarTop - buffer) {
-    if (!isStuck) {
-      stickySection.style.position = "absolute";
-      stickySection.style.top = "auto";
-      stickySection.style.bottom = `${footerBarHeight}px`;
-      isStuck = true;
-    }
-  } else {
-    if (isStuck) {
-      stickySection.style.position = "sticky";
-      stickySection.style.top = "0px";
-      stickySection.style.bottom = "";
-      isStuck = false;
-    }
-  }
-}
-
-    window.addEventListener("scroll", handleSticky, { passive: true });
-    window.addEventListener("resize", () => {
-      updatePlaceholderHeight();
-      handleSticky();
-    });
-    handleSticky();
-  }
-});
+  });
 </script>
 <script>
   // When the page loads
@@ -385,6 +354,53 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 </script>
 
+<script>
+  jQuery(function($) {
+  if (window.innerWidth <= 768) {
+    $('.woocommerce-product-gallery').flexslider({
+      animation: 'slide',
+      controlNav: "thumbnails",
+      smoothHeight: true,
+      touch: true
+    });
+  }
+});
+
+</script>
+<script>
+jQuery(function($) {
+  if (window.innerWidth <= 768) {
+    var $gallery = $('.woocommerce-product-gallery');
+
+    // If not already initialized, manually build it
+    if (!$gallery.hasClass('flexslider-initialized')) {
+      var $slides = $gallery.find('.woocommerce-product-gallery__wrapper > div');
+
+      if ($slides.length > 1) {
+        // Wrap images in <ul class="slides">
+        var $ul = $('<ul class="slides"></ul>');
+        $slides.each(function() {
+          $ul.append($('<li></li>').append($(this)));
+        });
+
+        $('.woocommerce-product-gallery__wrapper').empty().append($ul);
+
+        // Manually call FlexSlider
+        $gallery.flexslider({
+          animation: "slide",
+          selector: ".slides > li",
+          controlNav: "thumbnails",
+          animationLoop: false,
+          smoothHeight: true,
+          start: function() {
+            $gallery.addClass('flexslider-initialized');
+          }
+        });
+      }
+    }
+  }
+});
+</script>
 
 
 <!-- <script src="https://troopod-widget-build.b-cdn.net/test/feed.js" async></script> -->
