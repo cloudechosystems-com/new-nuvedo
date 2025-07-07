@@ -18,6 +18,59 @@
 		  <span class="copywrite_claim"> © Nuvedo official 2021</span>
 		  <img class="footer_logo" style="filter: invert(1); margin: 75px 20px 10px 20px; width:120px;" src="https://nuvedo.com/wp-content/uploads/2023/08/NIconsAsset-1.svg" alt="">
       </div>
+      <section class="store-section">
+  <div class="store-container">
+    
+    <div class="store-heading-wrapper">
+      <h2 class="store-heading">Visit Our store</h2>
+    </div>
+    
+    <div class="store-cards-wrapper">
+      
+      <div class="store-card-wrapper">
+        <div class="store-card">
+          <div class="store-map-wrapper">
+            <img class="store-map-img" src="https://via.placeholder.com/300x200" alt="Map Location 1">
+          </div>
+          <div class="store-info-wrapper">
+            <div class="store-icon-wrapper">
+             <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/07/17094183761571183081-1-1.png"/>
+            </div>
+            <div class="store-text-wrapper">
+              <p class="store-address">
+                35/1, Dwaraka industries,<br>
+                Gollahalli, 10th Block,<br>
+                Anjanapura, B......
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="store-card-wrapper">
+        <div class="store-card">
+          <div class="store-map-wrapper">
+            <img class="store-map-img" src="https://via.placeholder.com/300x200" alt="Map Location 2">
+          </div>
+          <div class="store-info-wrapper">
+            <div class="store-icon-wrapper">
+              <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/07/17094183761571183081-1-1.png"/>
+            </div>
+            <div class="store-text-wrapper">
+              <p class="store-address">
+                35/1, Dwaraka industries,<br>
+                Gollahalli, 10th Block,<br>
+                Anjanapura, B........
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
       <div class="footer_menu">
 		  <div class="footer_spacing">
 		  	<div>Quick Links</div>
@@ -152,7 +205,7 @@ $('.gallery_slider').owlCarousel({
         items: 1, // Display only one item at a time
         loop: true, // Enable loop
         autoplay: true, // Enable autoplay
-        autoplayTimeout: 3000, // Autoplay interval in milliseconds (3 seconds in this example)
+        autoplayTimeout: 2000, // Autoplay interval in milliseconds (3 seconds in this example)
         autoplayHoverPause: true, // Pause autoplay on hover
         nav: true, // Enable navigation arrows
         dots: true // Enable navigation dots
@@ -186,7 +239,7 @@ $('.gallery_slider').owlCarousel({
         nav: true,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 2000,
         autoplayHoverPause: true,
         navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
         responsive: {
@@ -212,7 +265,7 @@ $('.gallery_slider').owlCarousel({
         nav: true,
         dots: false,
         autoplay: true,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 2000,
         autoplayHoverPause: true,
         navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
         responsive: {
@@ -401,6 +454,65 @@ jQuery(function($) {
   }
 });
 </script>
+<script>
+jQuery(function ($) {
+  const secureHTML = `
+    <section class="payment-section" style="padding: 10px 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #eee;">
+      <div class="cart-container-side-cart">
+        <div class="payment-secure">
+          <div class="payment-secure-text" style="display:flex;align-items:center;font-size:14px;margin-bottom:6px;">
+            <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/lock.png" alt="Lock Icon" class="lock-icon" style="width:16px;margin-right:6px;">
+            <span>100% secure payment by</span>
+          </div>
+          <div class="payment-logos-side-cart">
+            <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Frame-75.png" alt="Razorpay" class="payment-logo" style="max-height:24px;">
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+
+  function injectSecureBlock() {
+    const footer = $('.xoo-wsc-footer');
+    if (footer.length && $('.payment-section').length === 0) {
+      $(secureHTML).insertBefore(footer);
+      console.log("✅ Secure payment section injected.");
+    }
+  }
+
+  // Observe any mutation to .xoo-wsc-modal (side cart root)
+  const targetNode = document.querySelector('.xoo-wsc-modal');
+
+  if (targetNode) {
+    const observer = new MutationObserver(() => {
+      setTimeout(injectSecureBlock, 50); // wait a bit for rendering
+    });
+
+    observer.observe(targetNode, { childList: true, subtree: true });
+
+    // Initial manual injection attempt
+    injectSecureBlock();
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("header-menu");
+
+  if (hamburger && menu) {
+    hamburger.addEventListener("click", function () {
+      menu.classList.toggle("menu-visible");
+    });
+  }
+});
+</script>
+
+
+
+
+
+
 
 
 <!-- <script src="https://troopod-widget-build.b-cdn.net/test/feed.js" async></script> -->

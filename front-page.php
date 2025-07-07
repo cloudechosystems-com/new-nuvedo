@@ -363,7 +363,7 @@
   </section>
   <section class="section">
     <div class="container">
-      <h2 class="section_heading new-section-heading">Blog & Articles</h2>
+      <h2 class="section_heading new-section-heading">Blogs & Articles</h2>
       <div class="home-blog_post_container">
         <?php
         $loop = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => -1));

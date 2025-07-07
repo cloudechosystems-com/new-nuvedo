@@ -53,6 +53,9 @@ if ( ! function_exists( 'dravalife_setup' ) ) :
 				'menu-1' => esc_html__( 'Primary', 'dravalife' ),
 			)
 		);
+        register_nav_menus(array(
+  'header' => 'Header Menu',
+));
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments

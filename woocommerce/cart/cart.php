@@ -267,43 +267,43 @@ do_action('woocommerce_before_cart'); ?>
 					<?php wp_reset_postdata(); ?>
 				<?php endif; ?>
 			</div>
-											</div>
-		</section>
-		<section class="payment-section">
-			<div class="cart-container">
-				<div class="payment-secure">
-					<div class="payment-secure-text">
-						<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/lock.png" alt="Lock Icon" class="lock-icon">
-						<span>100% secure payment by</span>
-					</div>
-					<div class="payment-logos">
-						<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Frame-75.png" alt="Razorpay" class="payment-logo">
-					</div>
-				</div>
+	</div>
+</section>
+<section class="payment-section">
+	<div class="cart-container">
+		<div class="payment-secure">
+			<div class="payment-secure-text">
+				<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/lock.png" alt="Lock Icon" class="lock-icon">
+				<span>100% secure payment by</span>
 			</div>
-
-			<div class='price-message cartpage-pricemsg'>
-				<p>Tax and Shipping rate calculated at checkout</p>
+			<div class="payment-logos">
+				<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Frame-75.png" alt="Razorpay" class="payment-logo">
 			</div>
-			<div class="cart-container">
-				<div class="cart-collaterals">
-					<?php
-					/**
-					 * Cart collaterals hook.
-					 *
-					 * @hooked woocommerce_cross_sell_display
-					 * @hooked woocommerce_cart_totals - 10
-					 */
+		</div>
+	</div>
 
-					do_action('woocommerce_cart_collaterals');
+	<div class='price-message cartpage-pricemsg'>
+		<p>Tax and Shipping rate calculated at checkout</p>
+	</div>
+	<div class="cart-container">
+		<div class="cart-collaterals">
+			<?php
+			/**
+			 * Cart collaterals hook.
+			 *
+			 * @hooked woocommerce_cross_sell_display
+			 * @hooked woocommerce_cart_totals - 10
+			 */
 
-					?>
-				</div>
+			do_action('woocommerce_cart_collaterals');
 
-				<?php do_action('woocommerce_after_cart'); ?>
+			?>
+		</div>
 
-			</div>
+		<?php do_action('woocommerce_after_cart'); ?>
 
-		</section>
+	</div>
+
+</section>
 
 </section>
