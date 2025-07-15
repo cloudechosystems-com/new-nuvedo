@@ -1412,7 +1412,7 @@ table.variations tr > th > label {
   font-size: 20px;
 }
 a:visited {
-  color: inherit !important;
+  /* color: inherit !important; */
 }
 
 select#pa_spawn {
@@ -1917,7 +1917,7 @@ img.cart-similar-product-img.ewww_webp_loaded {
   font-size: 28px;
 }
 .buy-now-button {
-  background: #c75328;
+  background: #00b606;
   line-height: 0;
   height: 38px;
   color: #fff;
@@ -2409,8 +2409,8 @@ img.attachment-woocommerce_thumbnail.size-woocommerce_thumbnail {
 }
 .add-to-cart {
   flex-direction: column;
-  background-color: #d9d9d9;
-  color: #363636;
+  background-color: #c75528;
+  color: #ffffff;
   line-height: 0;
   height: 38px;
   border-radius: 37px;
@@ -4385,6 +4385,7 @@ a.checkout-button.button.alt.wc-forward {
   font-weight: 700;
   padding: 13px;
   border: 1px solid #8f8100;
+  color: #fff !important;
 }
 
 .shop_buttons_wrapper {
@@ -5344,40 +5345,39 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
   #header-menu li {
     position: unset;
     height: 90px;
-}
-.header_cta {
+  }
+  .header_cta {
     position: absolute;
     left: 0;
     right: 0;
     justify-content: center;
     height: 100px;
-}
-    #header-menu.menu-visible {
-        display: flex
-;
-        padding: 0;
-        height: 100vh;
-        top: 74%;
-        box-shadow: unset;
-    }
-#header-menu {
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  background: #fff;
-  padding: 10px;
-  position: absolute;
-  top: 100%; /* Just below the header */
-  right: 0;
-  left: 0;
-  z-index: 999;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+  }
+  #header-menu.menu-visible {
+    display: flex;
+    padding: 0;
+    height: 100vh;
+    top: 74%;
+    box-shadow: unset;
+  }
+  #header-menu {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    padding: 10px;
+    position: absolute;
+    top: 100%; /* Just below the header */
+    right: 0;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-/* Show menu when toggled */
-#header-menu.menu-visible {
-  display: flex;
-}
+  /* Show menu when toggled */
+  #header-menu.menu-visible {
+    display: flex;
+  }
   a.added_to_cart.wc-forward {
     margin-top: 40px !important;
     height: 21px;
@@ -5395,7 +5395,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
     font-size: 16px !important;
     width: 100%;
     margin-top: 10px;
-    margin-bottom: 10 !important;
+    margin-bottom: 10px !important;
     padding: 8px;
   }
   .woocommerce-billing-fields h3::after {
@@ -5505,7 +5505,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 0;
+    padding: 6px 0;
     z-index: 999;
   }
   .woocommerce-product-gallery {
@@ -5586,7 +5586,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
   }
   .payment-section {
     box-shadow: 0px -2px 34px 4px #00000040;
-    bottom: 45px;
+    bottom: 50px;
     left: 0;
     width: 100%;
     z-index: 999;
@@ -5808,7 +5808,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
     padding: 8px 10px;
   }
   .price.product-price.strike {
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
   ul.products.columns-4 {
     padding: 0;
@@ -6019,7 +6019,7 @@ html.pum-open.pum-open-overlay.pum-open-scrollable body > [aria-hidden] {
   .nuvedo_circle_page .container .inner_hero_content {
     font-size: 25px;
   }
-  
+
   .second_section_wrapper {
     padding: 0;
   }

@@ -284,7 +284,6 @@ $('.gallery_slider').owlCarousel({
         }
     });
 </script>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
 $(document).ready(function() {
     // Hide the filter content initially
@@ -508,14 +507,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-
-
-
-
-
-
-
-<!-- <script src="https://troopod-widget-build.b-cdn.net/test/feed.js" async></script> -->
 <div id="whatsapp-float">
     <a href="https://wa.me/+917306746936" target="_blank">
         <img src="https://nuvedo.com/wp-content/uploads/2023/08/logo-whatsapp-png-pic-0.png" alt="WhatsApp" />

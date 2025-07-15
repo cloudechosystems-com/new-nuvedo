@@ -86,7 +86,7 @@ $discount = ($regular && $sale) ? round((($regular - $sale) / $regular) * 100) :
 			echo sprintf(
 				'<a href="%s" class="my-custom-btn select-options-btn">
 					<span class="cart-icon-wrapper">
-						<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Group-3-1.png" class="cart-icon" alt="Cart Icon" />
+						<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Cart-Icon.png" class="cart-icon" alt="Cart Icon" />
 					</span>
 					%s
 				</a>',
@@ -98,7 +98,7 @@ $discount = ($regular && $sale) ? round((($regular - $sale) / $regular) * 100) :
 			echo sprintf(
 				'<a href="%s" data-quantity="1" class="my-custom-btn" %s>
 					<span class="cart-icon-wrapper">
-						<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Group-3-1.png" class="cart-icon" alt="Cart Icon" />
+						<img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Cart-Icon.png" class="cart-icon" alt="Cart Icon" />
 					</span>
 					%s
 				</a>',
