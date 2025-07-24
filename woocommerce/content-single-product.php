@@ -22,9 +22,13 @@
        global $product;
     if ($product) {
         ?>
-        <a href="<?php echo esc_url(wc_get_checkout_url() . '?add-to-cart=' . $product->get_id()); ?>" class="single-buy-now-button singlepage-buynow">
-            Buy Now - <?php echo wc_price($product->get_price()); ?>
+        <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" 
+          id="buy-now-button"
+          class="single-buy-now-button singlepage-buynow"
+          data-default-product-id="<?php echo esc_attr($product->get_id()); ?>">
+          Buy Now
         </a>
+
         <?php
     }
 });
@@ -55,7 +59,7 @@
     ?>
 
    <div id="scrollimg" class="summary entry-summary">
-     <?php
+    <?php
       /**
        * Hook: woocommerce_single_product_summary.
        *
@@ -69,15 +73,35 @@
        * @hooked woocommerce_template_single_sharing - 50
        * @hooked WC_Structured_Data::generate_product_data() - 60
        */
+      
       remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
 
       remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50, 0);
       remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40, 0);
       add_action('woocommerce_single_product_summary', 'custom_title_after_price', 15);
+      add_action('woocommerce_single_product_summary', function () {
+      if (have_rows('key_features_repeater')) {
+          echo '<div class="key-benefits-inline">';
+          echo '<div class="key-feature-Wrapper">';
+          echo '<div class="key-feature-Cards">';
+          while (have_rows('key_features_repeater')): the_row();
+            echo '<div class="key-feature-card">';
+            echo '<div class="key-feature-imgCard">';
+            echo '<img src="' . esc_url(get_sub_field('key_icon')) . '" />';
+            echo '</div>';
+            echo '<div class="imgDescription">';
+            echo '<div class="imgHeading">' . esc_html(get_sub_field('feature_name')) . '</div>';
+            echo '</div>';
+            echo '</div>';
+          endwhile;
+          echo '</div></div></div>';
+        }
+      }, 29);
+
       do_action('woocommerce_single_product_summary');
+      
       echo '<div class="product_title_wrap">';
-      function custom_title_after_price()
-      {
+      function custom_title_after_price() {
         echo '<div class="custom-price-wrap">';
         woocommerce_template_single_price();
 
@@ -118,66 +142,7 @@
    </div>
    <div class="wrapper_content">
      <div class="description_wrapper">
-       <div class="product-section-heading">Key Benefits</div>
-       <div class="key-feature-Wrapper">
-         <div class="key-feature-Cards">
-           <?php
-            if (have_rows('key_features_repeater')):
-              $i = 0;
-              while (have_rows('key_features_repeater')): the_row(); ?>
-               <div class="key-feature-card">
-                 <div class="key-feature-imgCard">
-                   <img src="<?php echo get_sub_field('key_icon'); ?>" />
-                 </div>
-                 <div class="imgDescription">
-                   <div class="imgHeading"><?php echo get_sub_field('feature_name'); ?></div>
-                 </div>
-               </div>
-           <?php $i++;
-              endwhile;
-            else:
-            //no rows found
-            endif;
-            ?>
-         </div>
-       </div>
-       <section>
-         <div class="product-section-heading">Usage Guide</div>
-         <?php if (have_rows('usage_guide_repeater')) :
-            $i = 0;
-            while (have_rows('usage_guide_repeater')) : the_row();
-              $open = ($i === 0) ? 'block' : 'none'; // first one open
-              $icon = ($i === 0) ? '-' : '+';
-          ?>
-             <div class="usageGuideCard">
-               <div class="usageGuideHeader" data-toggle="usage-toggle-<?php echo $i; ?>">
-                 <div class="usageGuideTitle"><?php echo esc_html(get_sub_field('usage_title')); ?></div>
-                 <div class="usageGuideToggle" id="usage-icon-<?php echo $i; ?>"><?php echo $icon; ?></div>
-               </div>
-
-               <div class="usageGuideContent" id="usage-toggle-<?php echo $i; ?>" style="display:<?php echo $open; ?>;">
-                 <div class="usageGuideImage">
-                   <img src="<?php echo esc_url(get_sub_field('usage_image')); ?>" alt="">
-                 </div>
-                 <?php if (have_rows('steps')) : ?>
-                   <div class="usageGuideSteps">
-                     <?php while (have_rows('steps')) : the_row(); ?>
-                       <div class="usageGuideStep">
-                         <div class="stepTitle"><?php echo esc_html(get_sub_field('step_title')); ?></div>
-                         <div class="stepContent"><?php echo esc_html(get_sub_field('step_content')); ?></div>
-                       </div>
-                     <?php endwhile; ?>
-                   </div>
-                 <?php endif; ?>
-               </div>
-             </div>
-
-         <?php
-              $i++;
-            endwhile;
-          endif;
-          ?>
-       </section>
+       
        <section>
          <div class="product-section-heading">Lab Reports</div>
          <?php if (have_rows('lab_reports_repeater')) : ?>
@@ -341,4 +306,120 @@
          });
        });
      </script>
-     
+     <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // --- Open all Product Details accordions by default ---
+    document.querySelectorAll(".accordion-content").forEach(function (el) {
+      el.style.display = "block";
+    });
+
+    document.querySelectorAll(".accordion-title .toggle").forEach(function (toggle) {
+      toggle.textContent = "-";
+    });
+
+    // --- Open only the first FAQ item by default ---
+    const firstFaqAnswer = document.querySelector(".custom-faq .faq-answer");
+    const firstFaqToggle = document.querySelector(".custom-faq .faq-toggle");
+
+    if (firstFaqAnswer && firstFaqToggle) {
+      firstFaqAnswer.style.display = "block";
+      firstFaqToggle.textContent = "-";
+    }
+  });
+</script>
+<script>
+jQuery(document).ready(function($) {
+  $('.woovr-variation').on('click', function (e) {
+    // Avoid duplicate click on input or label directly
+    if (!$(e.target).is('input[type="radio"]') && !$(e.target).is('label')) {
+      const $radio = $(this).find('input[type="radio"]');
+      if ($radio.length) {
+        $radio.prop('checked', true).trigger('change');
+      }
+
+      // Manage active class styling
+      $('.woovr-variation').removeClass('woovr-variation-active');
+      $(this).addClass('woovr-variation-active');
+    }
+  });
+});
+</script>
+<script>
+jQuery(document).ready(function($) {
+  function formatINR(amount) {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR'
+    }).format(amount);
+  }
+
+  function updateBuyNowButton($variationBlock) {
+    const variationId = $variationBlock.data('id');
+    const price = parseFloat($variationBlock.data('price')) || 0;
+    const title = ($variationBlock.find('label').text() || '').toLowerCase();
+    const isSubscription = title.includes('subscription');
+    const buttonText = isSubscription ? 'Subscribe Now' : 'Buy Now';
+
+    const checkoutUrl = "<?php echo wc_get_checkout_url(); ?>";
+    $('#buy-now-button')
+      .attr('href', checkoutUrl + '?add-to-cart=' + variationId)
+      .text(`${buttonText} – ${formatINR(price)}`);
+  }
+
+  $('.woovr-variation').on('click', function () {
+    const $radio = $(this).find('input[type="radio"]');
+    if ($radio.length) {
+      $radio.prop('checked', true).trigger('change');
+    }
+
+    $('.woovr-variation').removeClass('woovr-variation-active');
+    $(this).addClass('woovr-variation-active');
+  });
+
+  // Optional: Listen to manual radio change as a backup (e.g., keyboard navigation or programmatic change)
+  $('.woovr-variation input[type="radio"]').on('change', function () {
+    $('.woovr-variation').removeClass('woovr-variation-active');
+    $(this).closest('.woovr-variation').addClass('woovr-variation-active');
+  });
+
+  $('.woovr-variation input[type="radio"]').on('change', function () {
+    updateBuyNowButton($(this).closest('.woovr-variation'));
+  });
+
+  // Trigger on default checked radio
+  const $default = $('.woovr-variation input[type="radio"]:checked').closest('.woovr-variation');
+  if ($default.length) {
+    updateBuyNowButton($default);
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const variations = document.querySelectorAll('.woovr-variation');
+  if (variations.length === 0) return;
+
+  let maxSavingPercent = 0;
+  let bestSavingVariation = null;
+
+  variations.forEach(variation => {
+    const regular = parseFloat(variation.dataset.regularPrice || '0');
+    const sale = parseFloat(variation.dataset.price || '0');
+
+    if (regular > sale) {
+      const savingPercent = Math.round(((regular - sale) / regular) * 100);
+      if (savingPercent > maxSavingPercent) {
+        maxSavingPercent = savingPercent;
+        bestSavingVariation = variation;
+      }
+    }
+  });
+
+  if (bestSavingVariation) {
+    const badge = document.createElement('div');
+    badge.className = 'best-value-badge'; // style this in CSS
+    badge.textContent = `Best Offer`;
+    bestSavingVariation.querySelector('.woovr-variation-name').prepend(badge);
+  }
+});
+
+</script>

@@ -454,45 +454,45 @@ jQuery(function($) {
 });
 </script>
 <script>
-jQuery(function ($) {
-  const secureHTML = `
-    <section class="payment-section" style="padding: 10px 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #eee;">
-      <div class="cart-container-side-cart">
-        <div class="payment-secure">
-          <div class="payment-secure-text" style="display:flex;align-items:center;font-size:14px;margin-bottom:6px;">
-            <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/lock.png" alt="Lock Icon" class="lock-icon" style="width:16px;margin-right:6px;">
-            <span>100% secure payment by</span>
-          </div>
-          <div class="payment-logos-side-cart">
-            <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Frame-75.png" alt="Razorpay" class="payment-logo" style="max-height:24px;">
-          </div>
-        </div>
-      </div>
-    </section>
-  `;
+// jQuery(function ($) {
+//   const secureHTML = `
+//     <section class="payment-section" style="padding: 10px 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #eee;">
+//       <div class="cart-container-side-cart">
+//         <div class="payment-secure">
+//           <div class="payment-secure-text" style="display:flex;align-items:center;font-size:14px;margin-bottom:6px;">
+//             <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/lock.png" alt="Lock Icon" class="lock-icon" style="width:16px;margin-right:6px;">
+//             <span>100% secure payment by</span>
+//           </div>
+//           <div class="payment-logos-side-cart">
+//             <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Frame-75.png" alt="Razorpay" class="payment-logo" style="max-height:24px;">
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   `;
 
-  function injectSecureBlock() {
-    const footer = $('.xoo-wsc-footer');
-    if (footer.length && $('.payment-section').length === 0) {
-      $(secureHTML).insertBefore(footer);
-      console.log("✅ Secure payment section injected.");
-    }
-  }
+//   function injectSecureBlock() {
+//     const footer = $('.xoo-wsc-footer');
+//     if (footer.length && $('.payment-section').length === 0) {
+//       $(secureHTML).insertBefore(footer);
+//       console.log("✅ Secure payment section injected.");
+//     }
+//   }
 
-  // Observe any mutation to .xoo-wsc-modal (side cart root)
-  const targetNode = document.querySelector('.xoo-wsc-modal');
+//   // Observe any mutation to .xoo-wsc-modal (side cart root)
+//   const targetNode = document.querySelector('.xoo-wsc-modal');
 
-  if (targetNode) {
-    const observer = new MutationObserver(() => {
-      setTimeout(injectSecureBlock, 50); // wait a bit for rendering
-    });
+//   if (targetNode) {
+//     const observer = new MutationObserver(() => {
+//       setTimeout(injectSecureBlock, 50); // wait a bit for rendering
+//     });
 
-    observer.observe(targetNode, { childList: true, subtree: true });
+//     observer.observe(targetNode, { childList: true, subtree: true });
 
-    // Initial manual injection attempt
-    injectSecureBlock();
-  }
-});
+//     // Initial manual injection attempt
+//     injectSecureBlock();
+//   }
+// });
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {

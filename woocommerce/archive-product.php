@@ -119,6 +119,8 @@ do_action('woocommerce_before_main_content');
                         'include_children' => true,
                     ],
                 ],
+                'orderby' => 'menu_order',
+                'order' => 'ASC'
             ]);
 
             if ($products->have_posts()) {

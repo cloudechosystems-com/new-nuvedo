@@ -164,7 +164,7 @@ function dravalife_scripts() {
 
 	wp_enqueue_script( 'dravalife-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script('scrollmagic', 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js', array('jquery'), null, true);
-	 wp_enqueue_style('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
+	wp_enqueue_style('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
 
     // Enqueue Owl Carousel Theme CSS
     wp_enqueue_style('owl-carousel-theme', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css');
@@ -620,7 +620,9 @@ function get_products_html($cat_id) {
             'terms'    => $cat_id,
         ]],
         'post_status'    => 'publish',
-        'no_found_rows'  => true, // Performance
+        'no_found_rows'  => true,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
     ];
 
     $query = new WP_Query($args);

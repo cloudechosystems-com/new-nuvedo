@@ -120,7 +120,7 @@ defined('ABSPATH') || exit;
 		<?php do_action('woocommerce_review_order_before_order_total'); ?>
 
 		<tr class="order-total">
-			<th><?php esc_html_e('Grand Call', 'woocommerce'); ?>
+			<th><?php esc_html_e('Grand total', 'woocommerce'); ?>
 			<td><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
 		

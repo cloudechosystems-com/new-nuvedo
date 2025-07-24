@@ -254,7 +254,7 @@
 
 
 </section>
-<section class="section our_story " style="background-image: url('https://nuvedo.com/wp-content/uploads/2023/10/our-story-bg.jpg')">
+<section class="section our_story " style="background-image: url('https://nuvedo.com/wp-content/uploads/2025/07/WhatsApp-Image-2025-04-24-at-09.37.33.jpeg')">
   <div class="container">
     <div class="our_story_content">
       <h2 class=""><?= get_field('story_nuvedo_heading'); ?></h2>

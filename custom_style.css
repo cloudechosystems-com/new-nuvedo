@@ -1693,8 +1693,6 @@ img.view-sho-icon {
 }
 .custom-price-wrap {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 form.cart {
   align-items: center;
@@ -1912,6 +1910,16 @@ img.cart-similar-product-img.ewww_webp_loaded {
   padding: 3px;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+}
+.best-value-badge {
+  position: absolute;
+  top: -12px;
+  background: #c75328;
+  color: #fff;
+  padding: 2px 10px;
 }
 .custom-price-wrap .woocommerce-Price-amount bdi {
   font-size: 28px;
@@ -2142,7 +2150,8 @@ span.review-count {
   background-color: #ffd4c3 !important;
   border: 1px solid #c75528;
 }
-.woovr-variations .woovr-variation:active {
+.woovr-variations .woovr-variation:active,
+.woovr-variation-active {
   background-color: #ffd4c3 !important;
   border: 1px solid #c75528;
 }
@@ -2187,7 +2196,7 @@ span.review-count {
   border-top: 1px solid #c75528;
 }
 .usageGuideTitle {
-  font-size: 22px;
+  font-size: 18px;
   color: #c75528;
   font-weight: 700;
 }
@@ -2329,7 +2338,7 @@ a.secondary_button.scr_rvl_txt {
   background-color: #00b606;
   text-align: center;
   border: 1px solid #8f8100;
-  color: #fff;
+  color: #fff !important;
   padding: 10px;
   font-size: 18px;
   border-radius: 50px;
@@ -2779,7 +2788,7 @@ img.lock-icon {
   display: flex;
   text-align: center;
   line-height: 1.2;
-  flex: 2;
+  padding-left: 5px;
 }
 .card-add-to-cart {
   margin: 0 auto;
@@ -3992,6 +4001,7 @@ span.woocommerce-Price-amount.amount {
   font-size: 24px;
   color: #363636;
   font-weight: 700;
+  padding-bottom: 10px;
 }
 .form-wrapper {
   padding: 12px;
@@ -4395,7 +4405,7 @@ a.checkout-button.button.alt.wc-forward {
 }
 button.single_add_to_cart_button.button.alt {
   color: #fff;
-  background: #c75328;
+  background: #c75328 !important;
   border-radius: 40px;
   justify-content: center;
   align-items: center;
