@@ -30,43 +30,44 @@
       <div class="store-card-wrapper">
         <div class="store-card">
           <div class="store-map-wrapper">
-            <img class="store-map-img" src="https://via.placeholder.com/300x200" alt="Map Location 1">
+            <img class="store-map-img" src="https://nuvedo.com/wp-content/uploads/2025/08/Screenshot-2025-08-14-at-1.19.23-AM-2.png" alt="Map Location 1">
           </div>
           <div class="store-info-wrapper">
             <div class="store-icon-wrapper">
-             <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/07/17094183761571183081-1-1.png"/>
+             <img src="https://nuvedo.com/wp-content/uploads/2025/08/Screenshot-2025-08-14-at-1.19.23-AM-2.png"/>
             </div>
             <div class="store-text-wrapper">
               <p class="store-address">
                 35/1, Dwaraka industries,<br>
                 Gollahalli, 10th Block,<br>
-                Anjanapura, B......
+                Anjanapura, Bengaluru,<br>
+                Karnataka 560062
               </p>
             </div>
           </div>
         </div>
       </div>
-
       <div class="store-card-wrapper">
         <div class="store-card">
           <div class="store-map-wrapper">
-            <img class="store-map-img" src="https://via.placeholder.com/300x200" alt="Map Location 2">
+            <img class="store-map-img" src="https://nuvedo.com/wp-content/uploads/2025/08/Screenshot-2025-08-14-at-1.19.23-AM-2.png" alt="Map Location 1">
           </div>
           <div class="store-info-wrapper">
             <div class="store-icon-wrapper">
-              <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/07/17094183761571183081-1-1.png"/>
+             <img src="https://nuvedo.com/wp-content/uploads/2025/08/Screenshot-2025-08-14-at-1.19.23-AM-2.png"/>
             </div>
             <div class="store-text-wrapper">
               <p class="store-address">
-                35/1, Dwaraka industries,<br>
-                Gollahalli, 10th Block,<br>
-                Anjanapura, B........
+                Nuvedo labs Pvt Ltd<br>
+                Dwaraka industries,<br>
+                Gollahalli, 10th Block<br>
+                Anjanapura<br>
+                Bangalore - 560062
               </p>
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
   </div>
@@ -130,20 +131,20 @@
 </div><!-- #page -->
 <?php wp_footer(); ?>
 <div class="footer-bar">
-  <a href="https://lightgrey-crab-521485.hostingersite.com/my-account/" class="footer-item">
-  <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/14163220701548233621-1.png" class="footer-icon" alt="Home Icon"/>
+  <a href="https://nuvedo.com/my-account/" class="footer-item">
+  <img src="https://nuvedo.com/wp-content/uploads/2025/08/14163220701548233621-1.png" class="footer-icon" alt="Home Icon"/>
     <span>Account</span>
   </a>
-  <a href="https://lightgrey-crab-521485.hostingersite.com/cart/" class="footer-item">
-   <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/Cart-Icon.png" class="footer-icon" alt="Cart Icon"/>
+  <a href="https://nuvedo.com/cart/" class="footer-item">
+   <img src="https://nuvedo.com/wp-content/uploads/2025/08/Cart-Icon.png" class="footer-icon" alt="Cart Icon"/>
     <span>Cart</span>
   </a>
   <a href="#" class="footer-item">
-    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/18366974841582708977-1.png" class="footer-icon" alt="Home Icon"/>
+    <img src="https://nuvedo.com/wp-content/uploads/2025/08/18366974841582708977-1.png" class="footer-icon" alt="Home Icon"/>
     <span>Offers</span>
   </a>
   <a href="https://wa.me/+917306746936" class="footer-item">
-    <img src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2025/06/14329293221556105345-1.png" class="footer-icon" alt="Help Icon"/>
+    <img src="https://nuvedo.com/wp-content/uploads/2025/08/14329293221556105345-1.png" class="footer-icon" alt="Help Icon"/>
     <span>Help/Contact</span>
   </a>
 </div>
@@ -153,7 +154,7 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 
 <script>
-$('.owlgallery').owlCarousel({
+jQuery('.owlgallery').owlCarousel({
     loop:true,
     margin:10,
     responsiveClass:true,
@@ -176,7 +177,7 @@ $('.owlgallery').owlCarousel({
 
 </script>
 <script type="text/javascript">
-$('.gallery_slider').owlCarousel({
+jQuery('.gallery_slider').owlCarousel({
     loop:true,
     margin:10,
     responsiveClass:true,
@@ -201,7 +202,7 @@ $('.gallery_slider').owlCarousel({
 
 </script>
 <script>
-    $(".banners").owlCarousel({
+    jQuery(".banners").owlCarousel({
         items: 1, // Display only one item at a time
         loop: true, // Enable loop
         autoplay: true, // Enable autoplay
@@ -233,7 +234,7 @@ $('.gallery_slider').owlCarousel({
         });
     </script>
 <script>
-    $(".testimonial").owlCarousel({
+    jQuery(".testimonial").owlCarousel({
         items: 4,
         loop: true,
         nav: true,
@@ -259,15 +260,15 @@ $('.gallery_slider').owlCarousel({
     });
 </script>
 <script>
-    $(".nf_wrapper,.partners_logo_wrap").owlCarousel({
+    jQuery(".nf_wrapper,.partners_logo_wrap").owlCarousel({
         items: 4,
         loop: true,
-        nav: true,
+        nav: false,
         dots: false,
         autoplay: true,
         autoplayTimeout: 2000,
         autoplayHoverPause: true,
-        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+        // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
         responsive: {
             1200: {
                 items: 4 
@@ -284,8 +285,9 @@ $('.gallery_slider').owlCarousel({
         }
     });
 </script>
+
 <script>
-$(document).ready(function() {
+jQuery(document).ready(function() {
     // Hide the filter content initially
     $(".filter-content").hide();
 
@@ -506,7 +508,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
-
 <div id="whatsapp-float">
     <a href="https://wa.me/+917306746936" target="_blank">
         <img src="https://nuvedo.com/wp-content/uploads/2023/08/logo-whatsapp-png-pic-0.png" alt="WhatsApp" />

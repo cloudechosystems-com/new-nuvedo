@@ -144,8 +144,8 @@
      <div class="description_wrapper">
        
        <section>
-         <div class="product-section-heading">Lab Reports</div>
-         <?php if (have_rows('lab_reports_repeater')) : ?>
+          <?php if (have_rows('lab_reports_repeater')) : ?>
+          <div class="product-section-heading">Lab Reports</div>
            <?php while (have_rows('lab_reports_repeater')) : the_row(); ?>
              <div class="labReportCard">
                <div class="reportText">
@@ -163,8 +163,8 @@
 
        </section>
        <section>
+          <?php if (have_rows('item_description')): ?>
          <div class="product-section-heading">Product Details</div>
-         <?php if (have_rows('item_description')): ?>
            <div class="accordion">
              <?php while (have_rows('item_description')): the_row(); ?>
                <div class="accordion-item">
@@ -183,7 +183,7 @@
        </section>
        <section class="section">
 
-         <div class="product-section-heading">Reviews</div>
+         <div class="product-section-heading">What our customers say</div>
          <div class="community_wrapper">
            <h2 class="section_heading heading_community_wrapper new-section-heading"><?= get_field('google_review_heading'); ?></h2>
            <div class="review_wrapper">
@@ -196,8 +196,8 @@
 
        </section>
        <section>
+          <?php if (have_rows('faq_items')) : ?>
          <div class="product-section-heading">FAQ</div>
-         <?php if (have_rows('faq_items')) : ?>
            <div class="custom-faq">
              <?php while (have_rows('faq_items')) : the_row(); ?>
                <div class="faq-item">

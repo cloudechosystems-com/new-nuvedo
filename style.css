@@ -111,7 +111,7 @@ hr {
   font-family: "D-DIN Regular";
   font-style: normal;
   font-weight: normal;
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DIN.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DIN.woff);
   font-weight: normal;
   font-display: swap;
 }
@@ -121,7 +121,7 @@ hr {
   font-style: normal;
   font-weight: normal;
   src: local("D-DIN DIN-Italic"), url("D-DIN-Bold.woff") format("woff");
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DIN-Bold.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DIN-Bold.woff);
   font-display: swap;
 }
 
@@ -130,7 +130,7 @@ hr {
   font-style: normal;
   font-weight: normal;
   src: local("D-DIN DIN-Bold"), url("D-DIN-Bold.woff") format("woff");
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DIN-Bold.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DIN-Bold.woff);
   font-display: swap;
 }
 
@@ -140,7 +140,7 @@ hr {
   font-weight: normal;
   src: local("D-DIN Condensed Regular"),
     url("D-DINCondensed.woff") format("woff");
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DINCondensed.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DINCondensed.woff);
   font-display: swap;
 }
 
@@ -149,7 +149,7 @@ hr {
   font-style: normal;
   font-weight: normal;
   src: local("D-DIN Exp Regular"), url("D-DINExp.woff") format("woff");
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DINExp.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DINExp.woff);
   font-display: swap;
 }
 
@@ -158,7 +158,7 @@ hr {
   font-style: normal;
   font-weight: normal;
   /* src: local('D-DIN Exp DINExp-Italic'), url('D-DINExp-Italic.woff') format('woff'); */
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DINExp-Italic.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DINExp-Italic.woff);
   font-display: swap;
 }
 
@@ -167,7 +167,7 @@ hr {
   font-style: normal;
   font-weight: normal;
   /* src: local('D-DIN Condensed DINCondensed-Bold'), url('D-DINCondensed-Bold.woff') format('woff'); */
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DINCondensed-Bold.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DINCondensed-Bold.woff);
   font-display: swap;
 }
 
@@ -176,7 +176,7 @@ hr {
   font-style: normal;
   font-weight: normal;
   /* src: local('D-DIN Exp DINExp-Bold'), url('D-DINExp-Bold.woff') format('woff'); */
-  src: url(https://lightgrey-crab-521485.hostingersite.com/wp-content/themes/nuvedo/fonts/D-DINExp-Bold.woff);
+  src: url(https://nuvedo.com/wp-content/themes/nuvedo/fonts/D-DINExp-Bold.woff);
   font-display: swap;
 }
 

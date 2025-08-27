@@ -114,7 +114,21 @@ $discount = ($regular && $sale) ? round((($regular - $sale) / $regular) * 100) :
 		?>
 	</div>
 
-	<div class="buy-now-button">
-		<a href="<?php echo esc_url( wc_get_checkout_url() . '?add-to-cart=' . $product->get_id() ); ?>" class="buynow-btnnew">Buy Now</a>
-	</div>
+	<div class="buy-now-wrapper">
+  <?php if ( $product->is_type( 'variable' ) ) : ?>
+    <!-- Variable: go to single product so they can choose options -->
+    <a href="<?php echo esc_url( $product->get_permalink() ); ?>" class="buy-now-button">
+     	Buy Now
+    </a>
+  <?php else : ?>
+    <!-- Simple: add to cart and jump straight to checkout -->
+    <a href="<?php echo esc_url( add_query_arg(
+      [ 'add-to-cart' => $product->get_id(), 'quantity' => 1 ],
+      wc_get_checkout_url()
+    ) ); ?>" class="buy-now-button">
+      Buy Now
+    </a>
+  <?php endif; ?>
+</div>
+
 </div>

@@ -48,14 +48,10 @@ if ( ! function_exists( 'dravalife_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 
 		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus(
-			array(
-				'menu-1' => esc_html__( 'Primary', 'dravalife' ),
-			)
-		);
-        register_nav_menus(array(
-  'header' => 'Header Menu',
-));
+		register_nav_menus(array(
+            'menu-1'      => esc_html__( 'Primary Menu', 'dravalife' ),
+            'header'      => esc_html__( 'Header Menu', 'dravalife' ),
+        ));
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -650,30 +646,42 @@ function load_tab_products() {
   $slug = sanitize_text_field($_POST['cat_slug'] ?? '');
   $term = get_term_by('slug', $slug, 'product_cat');
 
-  if (!$term) {
+  if (!$term || is_wp_error($term)) {
     echo '<p>Invalid category.</p>';
     wp_die();
   }
+
+  // include products from the term and all its children
   $child_ids = get_term_children($term->term_id, 'product_cat');
-  $all_ids = array_merge([$term->term_id], $child_ids);
+  $all_ids   = array_merge([$term->term_id], $child_ids);
+
   $args = [
-    'post_type' => 'product',
+    'post_type'      => 'product',
     'posts_per_page' => 8,
-    'tax_query' => [[
-      'taxonomy' => 'product_cat',
-      'field' => 'term_id',
-      'terms' => $all_ids,
+    'post_status'    => 'publish',
+    'no_found_rows'  => true,
+    'tax_query'      => [[
+      'taxonomy'         => 'product_cat',
+      'field'            => 'term_id',
+      'terms'            => $all_ids,
       'include_children' => true,
-      'operator' => 'IN'
-    ]]
+      'operator'         => 'IN',
+    ]],
+    // ✅ match first render: order by Menu order (then Title for stability)
+    'orderby'        => [
+      'menu_order' => 'ASC',
+      'title'      => 'ASC',
+    ],
   ];
+
   $loop = new WP_Query($args);
 
   if ($loop->have_posts()) {
+    // outputs <ul class="products">…</ul>
     woocommerce_product_loop_start();
     while ($loop->have_posts()) {
       $loop->the_post();
-      wc_get_template_part('content', 'newproduct'); // or 'content', 'product'
+      wc_get_template_part('content', 'newproduct');
     }
     woocommerce_product_loop_end();
   } else {

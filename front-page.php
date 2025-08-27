@@ -30,56 +30,63 @@
 
 <section class="section icon_breif_section ">
   <div class="container">
-    <div class="category-tabs">
-      <?php
-      $all_top_level_cats = get_terms([
-        'taxonomy' => 'product_cat',
-        'parent' => 0,
-        'hide_empty' => true,
-      ]);
 
-      foreach ($all_top_level_cats as $cat) {
-        echo '<button class="category-tab" data-cat-slug="' . esc_attr($cat->slug) . '">' . esc_html($cat->name) . '</button>';
-      }
-      ?>
+    <?php
+    // Get all top-level categories ONCE, in WooCommerce menu order
+    $all_top_level_cats = get_terms([
+      'taxonomy'   => 'product_cat',
+      'parent'     => 0,
+      'hide_empty' => true,
+      'orderby'    => 'menu_order', // respects WooCommerce category drag/drop
+      'order'      => 'ASC',
+    ]);
+    ?>
+
+    <div class="category-tabs">
+      <?php if (!empty($all_top_level_cats)) : ?>
+        <?php foreach ($all_top_level_cats as $i => $cat) : ?>
+          <button
+            class="category-tab<?php echo $i === 0 ? ' active' : ''; ?>"
+            data-cat-slug="<?php echo esc_attr($cat->slug); ?>">
+            <?php echo esc_html($cat->name); ?>
+          </button>
+        <?php endforeach; ?>
+      <?php else : ?>
+        <p>No categories found.</p>
+      <?php endif; ?>
     </div>
 
     <div class="tab-product-container">
       <div class="best-products" id="tab-product-grid">
         <?php
-        // Get all top-level categories
-        $all_top_level_cats = get_terms([
-          'taxonomy' => 'product_cat',
-          'parent' => 0,
-          'hide_empty' => true,
-        ]);
-
-        // Load products from the first category
+        // Load products from the FIRST category, ordered by product "Menu order"
         if (!empty($all_top_level_cats)) {
           $first_cat = $all_top_level_cats[0];
+
           $args = [
-            'post_type' => 'product',
-            'posts_per_page' => 5,
-            'tax_query' => [[
+            'post_type'      => 'product',
+            'posts_per_page' => -1,
+            'tax_query'      => [[
               'taxonomy' => 'product_cat',
-              'field' => 'slug',
-              'terms' => $first_cat->slug,
+              'field'    => 'slug',
+              'terms'    => $first_cat->slug,
             ]],
+            'orderby'        => 'menu_order', // respects product "Menu order" field
+            'order'          => 'ASC',
           ];
+
           $loop = new WP_Query($args);
 
           if ($loop->have_posts()) {
-            echo '<ul class="products columns-4">'; // Ensure columns-4 is added here
+            echo '<ul class="products columns-4">';
             while ($loop->have_posts()) : $loop->the_post();
-              wc_get_template_part('content', 'newproduct'); // Use your product card template
+              wc_get_template_part('content', 'newproduct');
             endwhile;
             echo '</ul>';
           } else {
             echo '<p>No products found in this category.</p>';
           }
           wp_reset_postdata();
-        } else {
-          echo '<p>No categories found.</p>';
         }
         ?>
       </div>
@@ -88,6 +95,7 @@
     <div id="product-carousel" class="best-product-carousel owl-carousel owl-theme"></div>
   </div>
 </section>
+
 <section class="section nuvedo_numuste">
   <div class="second_section_wrapper">
     <div class="second_section">
@@ -135,7 +143,10 @@
         while (have_rows('news_card')) : the_row(); ?>
           <div class="news_card">
             <a href="<?= get_sub_field('news-readmore'); ?>" class="read_more" target="_blank">
-              <div class="news_card_img"><img src="<?= get_sub_field('news-image'); ?>" alt=""></div>
+              <div class="news_card_img">
+                <img src="<?= get_sub_field('news-image'); ?>" alt="">
+                <div class="read_more_overlay">Read More</div>
+              </div>
             </a>
           </div>
       <?php endwhile;
@@ -338,7 +349,7 @@
   </section>
   <section class="section partners_logo_section">
     <div class="container">
-      <h2 class="section_heading new-section-heading">Brand Association</h2>
+      <h2 class="section_heading new-section-heading">Brand Associations & Partners</h2>
       <ul class="partners_logo_wrap owl-carousel owl-theme">
         <?php
         $i = 0;
@@ -396,7 +407,7 @@
 
 
       </div>
-      <a class="primary_btn" href="https://lightgrey-crab-521485.hostingersite.com/blog/">Show All</a>
+      <a class="primary_btn" href="https://nuvedo.com/blog/">Show All</a>
     </div>
 
 

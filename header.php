@@ -24,29 +24,10 @@
   <!-- 	<link rel="preload" as="image" href="<?php echo esc_url(get_sub_field('images')); ?>"> -->
   <?php wp_head(); ?>
 </head>
-
-
 <body <?php body_class(); ?>>
-
-
   <?php wp_body_open(); ?>
   <div id="page" class="site">
-    <!-- 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'dravalife'); ?></a> -->
-
     <header>
-      <!--<div  class="Loader">
-			<div class="emblem_navedo">
-				<img class="emblem_center" src="https://nuvedo.com/wp-content/uploads/2021/03/emblem_center.png" alt="">
-				<img class="emblem_ring" src="https://nuvedo.com/wp-content/uploads/2021/03/emblem_ring.png" alt="">
-
-
-			</div>
-			</div>-->
-      <!-- 		<div class="special_text">
-			Shop for Rs 2000 and win a gorgeous hand-illustrated LIMITED EDITION Mushroom Calendar worth Rs 900 for FREE
-		</div> -->
-
-
       <div class="header_warapper" id="main-contents">
         <div class="menu_wrapper">
           <div class="hamburger" id="hamburger">
@@ -61,48 +42,36 @@
           <?php the_custom_logo(); ?>
         </div>
         <div class="header_cta">
-	<?php
-  
-					wp_nav_menu(
-						array(
-							'menu' => 'header',
-							'menu_id' => 'header-menu',
-						)
-					);
-					?>
-
+          <?php
+            wp_nav_menu(
+              array(
+                'menu' => 'header',
+                'menu_id' => 'header-menu',
+              )
+            );
+          ?>
         </div>
         <div class="minicart_header">
           <?php echo do_shortcode('[jma_woo_minicart]'); ?>
         </div>
-
-
         <div class="header_search">
           <div class="search_click">
-
             <svg version="1.1" id="search_icon" x="0px" y="0px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
               <path class="st0" d="M26.2,28.7c0.7,0.7,1.8,0.7,2.5,0c0.7-0.7,0.7-1.8,0-2.5l-5.5-5.5c1.6-2.1,2.5-4.6,2.5-7.5
 									c0-6.9-5.5-12.5-12.5-12.5C6.3,0.8,0.8,6.3,0.8,13.2s5.5,12.5,12.5,12.5c2.8,0,5.3-0.9,7.5-2.5L26.2,28.7z M4.3,13.2
 									c0-5,3.9-8.9,8.9-8.9s8.9,3.9,8.9,8.9c0,5-3.9,8.9-8.9,8.9S4.3,18.2,4.3,13.2z" />
             </svg>
-
             <svg version="1.1" id="close_icon" x="0px" y="0px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
               <path d="M26.6,28.7L1.3,3.4c-0.6-0.6-0.6-1.5,0-2.1l0,0c0.6-0.6,1.5-0.6,2.1,0l25.2,25.2c0.6,0.6,0.6,1.5,0,2.1l0,0
 									C28.1,29.3,27.1,29.3,26.6,28.7z" />
               <path d="M28.7,3.4L3.4,28.7c-0.6,0.6-1.5,0.6-2.1,0l0,0c-0.6-0.6-0.6-1.5,0-2.1L26.6,1.3c0.6-0.6,1.5-0.6,2.1,0l0,0
 									C29.3,1.9,29.3,2.9,28.7,3.4z" />
             </svg>
-
             <div class="search_wrapper">
               <?php echo do_shortcode('[wcas-search-form]'); ?>
-
             </div>
-
           </div>
         </div>
-
-
-
       </div>
       <div class="top-bar" id="topBar">
         <div class="contact-info">
