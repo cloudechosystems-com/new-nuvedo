@@ -54,6 +54,11 @@
         <div class="minicart_header">
           <?php echo do_shortcode('[jma_woo_minicart]'); ?>
         </div>
+        <div class="wishlist_header">
+          <a href="https://nuvedo.com/my-account/">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M13.6 13.1c0-6.4 5.2-11.7 11.7-11.7C31.7 1.4 37 6.7 37 13.1c0 6.4-5.2 11.7-11.7 11.7-6.4 0-11.7-5.2-11.7-11.7zM2 48.1v-5.8c0-6.4 10.5-11.7 23.3-11.7s23.3 5.3 23.3 11.7v5.8H2z"/></svg>
+					</a>
+        </div>
         <div class="header_search">
           <div class="search_click">
             <svg version="1.1" id="search_icon" x="0px" y="0px" viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">

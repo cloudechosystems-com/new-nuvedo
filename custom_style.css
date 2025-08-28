@@ -714,7 +714,7 @@ ul.sub-menu li {
   display: flex;
   align-items: center;
   padding-top: 4px;
-  padding-right: 15px;
+  padding-right: 25px;
 }
 span.cart-items-count.count {
   font-size: 12px;
