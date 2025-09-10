@@ -18,7 +18,7 @@
 		  <span class="copywrite_claim"> © Nuvedo official 2021</span>
 		  <img class="footer_logo" style="filter: invert(1); margin: 75px 20px 10px 20px; width:120px;" src="https://nuvedo.com/wp-content/uploads/2023/08/NIconsAsset-1.svg" alt="">
       </div>
-      <section class="store-section">
+      <!-- <section class="store-section">
   <div class="store-container">
     
     <div class="store-heading-wrapper">
@@ -70,8 +70,8 @@
       </div>
     </div>
 
-  </div>
-</section>
+  </div> 
+</section> -->
       <div class="footer_menu">
 		  <div class="footer_spacing">
 		  	<div>Quick Links</div>

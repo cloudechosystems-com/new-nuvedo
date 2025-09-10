@@ -85,7 +85,16 @@ if (!$matched_banner) {
         <img fetchpriority="high" class="banner_img_spiral" src="https://lightgrey-crab-521485.hostingersite.com/wp-content/uploads/2021/05/bannerspiral.png" alt="Nuvedo spiral background">
     </div>
 </section>
+<section class="weatherapp categorypage" style="max-width:600px; margin:0 auto; margin-bottom:30px;">
+					<div class="weatherapp-wrapper">
+						<div class="weatherappicon-wrapper" style="order:1; margin-right:30px;"><img src="https://nuvedo.com/wp-content/uploads/2022/08/weather-e1648668406832.png" class="weatherapp_icon" style="height:12vh; width:unset;" alt=""></div>
+						<div class="weather-content">
+							<h3>Not sure which Mushroom Growing Kit to grow?</h3>
+							<a  href="https://nuvedo.com/weather/" class="weatherapplink">CLICK</a>
 
+						</div>
+					</div>
+</section>
 <?php
 		if (woocommerce_product_loop()) {
 

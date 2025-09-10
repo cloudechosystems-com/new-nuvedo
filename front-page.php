@@ -9,23 +9,35 @@
     </a>
   </div>
   <section class="banner_section">
-    <div class="banners owl-carousel owl-theme">
-      <?php if (have_rows('bann_images')) : ?>
-        <?php while (have_rows('bann_images')) : the_row(); ?>
-          <div class="item">
+  <div class="banners owl-carousel owl-theme">
+    <?php if (have_rows('bann_images')) : ?>
+      <?php while (have_rows('bann_images')) : the_row();
+        // Image field can be URL or ACF image array
+        $image    = get_sub_field('images');
+        $img_url  = is_array($image) ? ($image['url'] ?? '') : $image;
+        $img_alt  = is_array($image) ? (!empty($image['alt']) ? $image['alt'] : ($image['title'] ?? 'Banner')) : (get_sub_field('banner_heading') ?: 'Banner');
+
+        // Your existing link field
+        $href = trim((string) get_sub_field('banner_category_link'));
+      ?>
+        <div class="item">
+          <?php if (!empty($href)) : ?><a class="banner-link" href="<?php echo esc_url($href); ?>"><?php endif; ?>
+
             <div class="hero_image">
-              <img src="<?php echo esc_url(get_sub_field('images')); ?>" alt="Banner Image">
+              <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>">
             </div>
             <div class="home_banner_details">
-              <h2><?= get_sub_field('banner_heading'); ?></h2>
-              <h3><?= get_sub_field('banner_sub_heading'); ?></h3>
-              
+              <h2><?php echo esc_html(get_sub_field('banner_heading')); ?></h2>
+              <h3><?php echo esc_html(get_sub_field('banner_sub_heading')); ?></h3>
             </div>
-          </div>
-        <?php endwhile; ?>
-      <?php endif; ?>
-    </div>
-  </section>
+
+          <?php if (!empty($href)) : ?></a><?php endif; ?>
+        </div>
+      <?php endwhile; ?>
+    <?php endif; ?>
+  </div>
+</section>
+
 </div>
 
 <section class="section icon_breif_section ">
